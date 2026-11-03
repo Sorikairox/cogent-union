@@ -3,12 +3,12 @@
 # Every article edited here is written back as a Markdown file in this
 # repository, under /content. Nothing is stored in a database.
 #
-# Before going live, set `repo` below to your own GitHub repository and point
-# `base_url` at your OAuth endpoint (see README.md -> "Editing with the CMS").
+# Before editors can sign in, point `base_url` at your OAuth endpoint
+# (see README.md -> "Editing with the CMS").
 # ---------------------------------------------------------------------------
 backend:
   name: github
-  repo: OWNER/union-website
+  repo: Sorikairox/cogent-union
   branch: main
   # Hosted OAuth endpoint that signs editors in with their GitHub account.
   # base_url: https://auth.example.org

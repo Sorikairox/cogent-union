@@ -16,7 +16,8 @@ export const GET: APIRoute = async ({ params, site }) => {
   return rss({
     title: t('site.name'),
     description: t('site.description'),
-    site: site ?? SITE.url,
+    // The feed's own link must include the base path, not just the origin.
+    site: new URL(import.meta.env.BASE_URL, site ?? SITE.url),
     customData: `<language>${lang}</language>`,
     items: items.map(({ section, entry }) => ({
       title: entry.data.title,

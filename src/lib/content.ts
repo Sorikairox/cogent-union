@@ -82,8 +82,14 @@ export async function getTopics(lang: Lang): Promise<TopicCount[]> {
     .sort((a, b) => b.count - a.count || a.topic.localeCompare(b.topic));
 }
 
+/**
+ * A topic's URL segment. Japanese topics keep their own characters: the value
+ * must NOT be percent-encoded here, or the generated directory would be named
+ * with a literal `%E7%...` and never match a request that the browser encodes
+ * itself.
+ */
 export function topicSlug(topic: string): string {
-  return encodeURIComponent(topic.toLowerCase().replace(/\s+/g, '-'));
+  return topic.toLowerCase().replace(/\s+/g, '-');
 }
 
 /** Rough reading time, good enough for both Latin and Japanese text. */

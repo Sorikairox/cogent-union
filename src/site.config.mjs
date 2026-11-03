@@ -3,16 +3,22 @@
  * Everything here shows up in the header, footer, metadata and CMS previews.
  */
 export const SITE = {
-  /** Public URL of the deployed site. Used for sitemap, RSS and canonical links. */
-  url: 'https://union.example.org',
+  /** Origin of the deployed site. Used for sitemap, RSS and canonical links. */
+  url: 'https://sorikairox.github.io',
+  /**
+   * Sub-path the site is served from. GitHub Pages serves a project site under
+   * /<repo>/. Set this to '/' if you move to a custom domain, and drop the
+   * CNAME step in the README.
+   */
+  base: '/cogent-union',
   /** Repository that holds the articles (used by the CMS). */
-  repo: 'OWNER/union-website',
+  repo: 'Sorikairox/cogent-union',
   branch: 'main',
-  email: 'contact@union.example.org',
+  email: 'cogentlabsunion@gmail.com',
   /** Optional external links shown in the footer. Remove what you do not need. */
   links: {
     discord: '',
-    rss: '/rss-en.xml',
+    rss: 'rss-en.xml',
   },
 };
 

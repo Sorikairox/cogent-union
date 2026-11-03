@@ -1,6 +1,6 @@
 ---
 import Logo from './Logo.astro';
-import { useTranslations, path, type Lang } from '../i18n/utils';
+import { useTranslations, path, withBase, type Lang } from '../i18n/utils';
 import { SITE } from '../site.config.mjs';
 
 interface Props {
@@ -37,7 +37,7 @@ const year = new Date().getFullYear();
       <ul>
         <li><a href={path(lang, 'topics')}>{t('meta.topics')}</a></li>
         <li><a href={path(lang, 'news')}>{t('section.news')}</a></li>
-        <li><a href={`/rss-${lang}.xml`}>{t('footer.rss')}</a></li>
+        <li><a href={withBase(`rss-${lang}.xml`)}>{t('footer.rss')}</a></li>
         {SITE.links.discord && <li><a href={SITE.links.discord}>{t('footer.discordCta')}</a></li>}
       </ul>
     </div>

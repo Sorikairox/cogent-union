@@ -9,9 +9,22 @@ export function isLang(value: string | undefined): value is Lang {
   return !!value && value in ui;
 }
 
+/**
+ * The sub-path the site is served from ('/' or '/cogent-union/' on GitHub
+ * Pages). Astro only applies it to its own asset URLs, so every link we write
+ * by hand has to go through `withBase`.
+ */
+const BASE = import.meta.env.BASE_URL;
+
+/** Prefixes a root-relative path with the site's base path. */
+export function withBase(p: string): string {
+  return `${BASE.replace(/\/$/, '')}/${p.replace(/^\//, '')}`;
+}
+
 /** Reads the language out of a URL such as /ja/news/foo/. */
 export function getLangFromUrl(url: URL): Lang {
-  const [, lang] = url.pathname.split('/');
+  const withoutBase = url.pathname.slice(BASE.replace(/\/$/, '').length);
+  const [, lang] = withoutBase.split('/');
   return isLang(lang) ? lang : defaultLang;
 }
 
@@ -22,13 +35,13 @@ export function useTranslations(lang: Lang) {
   };
 }
 
-/** Builds an absolute, locale-prefixed path: path('ja', 'news') -> '/ja/news/'. */
+/** Builds a locale-prefixed path: path('ja', 'news') -> '/<base>/ja/news/'. */
 export function path(lang: Lang, ...segments: (string | undefined)[]): string {
   const parts = [lang, ...segments.filter((s): s is string => !!s)]
     .join('/')
     .split('/')
     .filter(Boolean);
-  return `/${parts.join('/')}/`;
+  return withBase(`${parts.join('/')}/`);
 }
 
 const DATE_LOCALE: Record<Lang, string> = { en: 'en-GB', ja: 'ja-JP' };

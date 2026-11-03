@@ -7,6 +7,7 @@ import { rehypeTableScroll } from './src/lib/rehype-table-scroll.mjs';
 
 export default defineConfig({
   site: SITE.url,
+  base: SITE.base,
   trailingSlash: 'always',
   integrations: [mdx(), sitemap({ i18n: { defaultLocale: 'en', locales: { en: 'en', ja: 'ja' } } })],
   i18n: {

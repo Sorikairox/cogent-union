@@ -115,14 +115,13 @@ Changes are written straight to the files on disk; commit them as usual.
 
 ### In production, for the section's editors
 
-1. Set `repo:` in `public/admin/config.yml` to your GitHub repository
-   (`owner/name`) and check `branch:`.
-2. Give editors write access to the repository on GitHub.
-3. Deploy an OAuth endpoint so they can sign in without a token — the
+1. Give editors write access to the repository on GitHub.
+2. Deploy an OAuth endpoint so they can sign in without a token — the
    one-file Cloudflare Worker
    [`sveltia-cms-auth`](https://github.com/sveltia/sveltia-cms-auth) does this.
    Then uncomment `base_url:` in `config.yml` and point it at that worker.
-4. Editors go to `https://<your-domain>/admin/` and sign in with GitHub.
+3. Editors go to <https://sorikairox.github.io/cogent-union/admin/> and sign
+   in with GitHub.
 
 `publish_mode: editorial_workflow` means a save opens a pull request instead of
 publishing immediately. Set it to `simple` if the section would rather publish
@@ -135,7 +134,8 @@ Using PAT** and a personal access token scoped to this repository.
 
 ## Changing the site's identity
 
-- `src/site.config.mjs` — public URL, repository, contact email, external links.
+- `src/site.config.mjs` — public URL, base path, repository, contact email,
+  external links.
 - `src/i18n/ui.ts` — the union's name, tagline and every other interface string,
   in both languages. Nothing user-facing is hardcoded in a component.
 - `src/components/Logo.astro` and `public/favicon.svg` — the placeholder mark.
@@ -159,16 +159,26 @@ Routes, feeds, sitemaps and the language switcher follow automatically.
 on every push to `main`. In the repository settings, set **Pages → Source** to
 **GitHub Actions**.
 
+The site is served from <https://sorikairox.github.io/cogent-union/> — a
+GitHub Pages *project* site, so it lives under a sub-path. That sub-path is
+`SITE.base` in `src/site.config.mjs`, which feeds `base` in `astro.config.mjs`.
+Astro applies it to its own assets only, so every link written by hand goes
+through `withBase()` from `src/i18n/utils.ts` — use it for any new one.
+
+### Moving to a custom domain
+
+1. Set `SITE.url` to the domain and `SITE.base` to `'/'`.
+2. Update the `Sitemap:` line in `public/robots.txt`.
+3. Add `public/CNAME` containing the domain, and point the DNS record at
+   GitHub Pages.
+
 Any static host works just as well (Netlify, Cloudflare Pages, a plain web
 server): build with `npm run build` and serve `dist/`.
-
-Before going live, set `SITE.url` in `src/site.config.mjs` and the `Sitemap:`
-line in `public/robots.txt` to the real domain.
 
 ---
 
 ## Privacy
 
 No cookies, no analytics, no third-party scripts on the public pages, no
-webfonts fetched from a third party. `/admin/` loads the CMS from a CDN and is
-excluded from `robots.txt`.
+webfonts fetched from a third party. The CMS at `/admin/` loads from a CDN and
+is excluded from `robots.txt`.
