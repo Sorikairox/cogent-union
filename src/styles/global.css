@@ -182,23 +182,28 @@ p {
   display: inline-block;
   transform: skewX(8deg);
 }
-.btn-yellow {
+/*
+ * Two classes on purpose. A single `.btn-yellow` ties with container rules
+ * like `.featured a` or `.site-footer a`, which then win by order and paint
+ * white on yellow — 1.24:1, unreadable. These outrank them everywhere.
+ */
+.btn.btn-yellow {
   background: var(--yellow);
   color: var(--dark);
 }
-.btn-yellow:hover {
+.btn.btn-yellow:hover {
   background: var(--white);
   color: var(--dark);
 }
-.btn-red {
+.btn.btn-red {
   background: var(--red);
   color: var(--white);
 }
-.btn-red:hover {
+.btn.btn-red:hover {
   background: var(--red-dark);
   color: var(--white);
 }
-.btn-dark {
+.btn.btn-dark {
   background: var(--dark);
   color: var(--white);
 }
@@ -313,7 +318,7 @@ p {
   color: var(--white);
 }
 .lang-switch .sep {
-  color: var(--grey-line);
+  color: var(--dimmed);
 }
 
 /* ---------------------------------------------------------------
@@ -590,6 +595,8 @@ p {
 .footer-brand .tagline {
   font-size: 1.1rem;
   margin: 1rem 0 0.5rem;
+  /* Red on near-black is 3.5:1. Yellow on the same ground is over 15:1. */
+  color: var(--yellow);
 }
 .footer-talk h2 {
   display: inline-block;
