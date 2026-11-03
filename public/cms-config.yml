@@ -25,6 +25,9 @@ local_backend: true
 # committing to the branch. Set to `simple` to publish directly.
 publish_mode: editorial_workflow
 
+# The file name is what pairs an article with its translation: saving the
+# English and the Japanese side of one entry writes content/<section>/en/<slug>.md
+# and content/<section>/ja/<slug>.md. Renaming one side breaks the pairing.
 media_folder: public/uploads
 # Root-relative on purpose. The site's base path is added when the page is
 # built (see src/lib/rehype-base-urls.mjs), so moving to a custom domain or a
@@ -68,13 +71,6 @@ collections:
         picker_utc: true
         required: false
         i18n: true
-      - name: translationKey
-        label: Translation key
-        widget: string
-        i18n: duplicate
-        hint: >-
-          The same value in every language. This is what links the English and
-          Japanese versions of one article together.
       - name: topics
         label: Topics
         widget: list
@@ -97,7 +93,13 @@ collections:
         required: false
         i18n: true
         hint: A draft is never published. It can be set per language.
-      - { name: body, label: Body, widget: markdown, i18n: true }
+      - name: body
+        label: Body
+        widget: markdown
+        i18n: true
+        # Raw only. The rich-text editor rewrites the Markdown it round-trips
+        # and escapes **bold** into \*\*bold\*\*.
+        modes: [raw]
 
   - name: news
     label: News
@@ -130,13 +132,6 @@ collections:
         picker_utc: true
         required: false
         i18n: true
-      - name: translationKey
-        label: Translation key
-        widget: string
-        i18n: duplicate
-        hint: >-
-          The same value in every language. This is what links the English and
-          Japanese versions of one article together.
       - name: topics
         label: Topics
         widget: list
@@ -159,7 +154,13 @@ collections:
         required: false
         i18n: true
         hint: A draft is never published. It can be set per language.
-      - { name: body, label: Body, widget: markdown, i18n: true }
+      - name: body
+        label: Body
+        widget: markdown
+        i18n: true
+        # Raw only. The rich-text editor rewrites the Markdown it round-trips
+        # and escapes **bold** into \*\*bold\*\*.
+        modes: [raw]
 
   - name: rights
     label: Practical guides
@@ -192,13 +193,6 @@ collections:
         picker_utc: true
         required: false
         i18n: true
-      - name: translationKey
-        label: Translation key
-        widget: string
-        i18n: duplicate
-        hint: >-
-          The same value in every language. This is what links the English and
-          Japanese versions of one article together.
       - name: topics
         label: Topics
         widget: list
@@ -221,7 +215,13 @@ collections:
         required: false
         i18n: true
         hint: A draft is never published. It can be set per language.
-      - { name: body, label: Body, widget: markdown, i18n: true }
+      - name: body
+        label: Body
+        widget: markdown
+        i18n: true
+        # Raw only. The rich-text editor rewrites the Markdown it round-trips
+        # and escapes **bold** into \*\*bold\*\*.
+        modes: [raw]
 
   - name: dossiers
     label: Dossiers
@@ -254,13 +254,6 @@ collections:
         picker_utc: true
         required: false
         i18n: true
-      - name: translationKey
-        label: Translation key
-        widget: string
-        i18n: duplicate
-        hint: >-
-          The same value in every language. This is what links the English and
-          Japanese versions of one article together.
       - name: topics
         label: Topics
         widget: list
@@ -283,7 +276,13 @@ collections:
         required: false
         i18n: true
         hint: A draft is never published. It can be set per language.
-      - { name: body, label: Body, widget: markdown, i18n: true }
+      - name: body
+        label: Body
+        widget: markdown
+        i18n: true
+        # Raw only. The rich-text editor rewrites the Markdown it round-trips
+        # and escapes **bold** into \*\*bold\*\*.
+        modes: [raw]
 
   - name: pages
     label: Pages
@@ -298,11 +297,6 @@ collections:
     fields:
       - { name: title, label: Title, widget: string, i18n: true }
       - { name: description, label: Summary, widget: text, required: false, i18n: true }
-      - name: translationKey
-        label: Translation key
-        widget: string
-        i18n: duplicate
-        hint: The same value in every language.
       - name: updatedDate
         label: Last updated
         widget: datetime
@@ -313,4 +307,10 @@ collections:
         required: false
         i18n: true
       - { name: draft, label: Draft, widget: boolean, default: false, required: false, i18n: true }
-      - { name: body, label: Body, widget: markdown, i18n: true }
+      - name: body
+        label: Body
+        widget: markdown
+        i18n: true
+        # Raw only. The rich-text editor rewrites the Markdown it round-trips
+        # and escapes **bold** into \*\*bold\*\*.
+        modes: [raw]

@@ -20,16 +20,15 @@ const { entry } = Astro.props as { entry: CollectionEntry<'pages'> };
 const t = useTranslations(lang);
 const { Content } = await render(entry);
 
+// The translations of one page are the files that share its name.
+const { slug } = splitId(entry.id);
 const siblings = (await getCollection('pages')).filter(
-  (e) => e.data.translationKey === entry.data.translationKey && !e.data.draft,
+  (e) => !e.data.draft && splitId(e.id).slug === slug,
 );
 const alternates: Partial<Record<Lang, string>> = {};
 for (const sibling of siblings) {
-  const { lang: siblingLang, slug } = splitId(sibling.id);
-  alternates[siblingLang] = path(siblingLang, slug);
+  alternates[splitId(sibling.id).lang] = path(splitId(sibling.id).lang, slug);
 }
-
-const { slug } = splitId(entry.id);
 const active = slug === 'demands' ? 'demands' : slug === 'about' ? 'about' : undefined;
 ---
 

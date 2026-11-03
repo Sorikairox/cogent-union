@@ -37,13 +37,14 @@ const { section, entry } = Astro.props as {
 const t = useTranslations(lang);
 const { Content } = await render(entry);
 
-// Find the same article in the other languages.
+// The translations of one article are the files that share its name.
+const slug = splitId(entry.id).slug;
 const siblings = (await getCollection(section)).filter(
-  (e) => e.data.translationKey === entry.data.translationKey && !e.data.draft,
+  (e) => !e.data.draft && splitId(e.id).slug === slug,
 );
 const alternates: Partial<Record<Lang, string>> = {};
 for (const sibling of siblings) {
-  const { lang: siblingLang, slug } = splitId(sibling.id);
+  const siblingLang = splitId(sibling.id).lang;
   alternates[siblingLang] = path(siblingLang, SECTION_META[section].segment, slug);
 }
 

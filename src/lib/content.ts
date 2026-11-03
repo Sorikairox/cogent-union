@@ -54,16 +54,17 @@ export async function getAllArticles(lang: Lang): Promise<
     .sort((a, b) => byDateDesc(a.entry, b.entry));
 }
 
-/** The same article in another language, if it has been translated. */
+/** The same article in another language. Translations share a file name. */
 export async function getTranslation(
   section: SectionName,
-  translationKey: string,
+  slug: string,
   lang: Lang,
 ): Promise<AnyArticle | undefined> {
   const entries = await getCollection(section, isPublished);
-  return entries.find(
-    (e) => e.data.translationKey === translationKey && splitId(e.id).lang === lang,
-  );
+  return entries.find((e) => {
+    const parts = splitId(e.id);
+    return parts.slug === slug && parts.lang === lang;
+  });
 }
 
 export type TopicCount = { topic: string; count: number };

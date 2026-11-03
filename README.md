@@ -67,9 +67,9 @@ src/
 ## Writing an article
 
 Create a file under `content/<section>/<lang>/<slug>.md`. The English and
-Japanese versions of one article are two files that share the same
-`translationKey` — that is what links them for the language switcher and for
-`<link rel="alternate">`.
+Japanese versions of one article are two files with the **same file name** —
+that is what links them for the language switcher and for
+`<link rel="alternate">`. Rename one side and the pair is broken.
 
 ```markdown
 ---
@@ -77,7 +77,6 @@ title: A stronger union, speaking up
 description: One or two sentences, shown in lists and in search results.
 pubDate: 2026-11-02
 updatedDate: 2026-11-10      # optional
-translationKey: union-takes-the-floor
 topics:
   - Union life
 author: The section          # optional
@@ -92,6 +91,8 @@ The body, in Markdown. `.mdx` works too if you need components.
 
 Notes:
 
+- **Optional fields may be left blank.** The CMS writes `updatedDate: ''` for
+  a field an editor did not fill; the schema reads an empty string as absent.
 - **Topics are translated.** `Union life` and `組合活動` are separate topics,
   each with its own page. That is deliberate: a Japanese reader browses
   Japanese topic names.
