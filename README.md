@@ -19,8 +19,14 @@ npm run preview  # serve dist/ locally
 npm run check    # type-check pages, components and content schemas
 ```
 
-Stop `npm run dev` before running `npm run build`: both write the content cache
-in `.astro/`, and a build racing the dev server silently drops pages.
+Two things about that cache in `.astro/`:
+
+- Stop `npm run dev` before running `npm run build`. Both write the cache, and
+  a build racing the dev server silently drops pages.
+- **After deleting an article, build with `npx astro build --force`.** A plain
+  local build keeps serving entries whose files are gone, because the cache is
+  not pruned. The deploy workflow is unaffected — it builds from a fresh
+  checkout with no cache.
 
 ---
 

@@ -13,8 +13,8 @@ export const defaultLang: Lang = 'en';
  */
 export const ui = {
   en: {
-    'site.name': 'Our Union',
-    'site.shortName': 'Our Union',
+    'site.name': "Cogent's Workers Union",
+    'site.shortName': "Cogent's Workers Union",
     'site.tagline': 'Inform · Defend · Act',
     'site.description':
       'News, statements and practical guides from the union section. Your rights, our collective commitment.',
@@ -95,8 +95,8 @@ export const ui = {
     '404.back': 'Back to the home page',
   },
   ja: {
-    'site.name': '私たちの労働組合',
-    'site.shortName': '私たちの労働組合',
+    'site.name': 'コージェント労働組合',
+    'site.shortName': 'コージェント労働組合',
     'site.tagline': '知らせる・守る・行動する',
     'site.description':
       '組合支部からのニュース・声明・実務ガイド。あなたの権利は、私たちみんなの約束です。',
