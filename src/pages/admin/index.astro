@@ -1,0 +1,37 @@
+---
+/**
+ * The content manager. Served as a real page so that it answers at
+ * <base>/admin/ — a file in public/ would only answer at
+ * <base>/admin/index.html, which is not a URL to hand to an editor.
+ *
+ * The CMS is Sveltia: it reads and writes the Markdown files in /content,
+ * either on disk ("Work with Local Repository") or through the GitHub API.
+ */
+import { withBase } from '../../i18n/utils';
+
+const CMS_VERSION = '0.111.0';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Content manager</title>
+    <!--
+      Two reasons this is explicit. The CMS would otherwise look for
+      /admin/config.yml at the root of the domain, which is the wrong place
+      when the site is served from a sub-path; and the file cannot live in
+      public/admin/, because that directory would shadow this very route in
+      `astro dev` and the editor would get a 404.
+    -->
+    <link href={withBase('cms-config.yml')} type="text/yaml" rel="cms-config-url" />
+  </head>
+  <body>
+    <script
+      is:inline
+      type="module"
+      src={`https://unpkg.com/@sveltia/cms@${CMS_VERSION}/dist/sveltia-cms.js`}></script>
+  </body>
+</html>

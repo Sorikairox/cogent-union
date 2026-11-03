@@ -3,25 +3,32 @@
 # Every article edited here is written back as a Markdown file in this
 # repository, under /content. Nothing is stored in a database.
 #
-# Before editors can sign in, point `base_url` at your OAuth endpoint
-# (see README.md -> "Editing with the CMS").
+# How the section edits: clone the repository, `npm run dev`, open
+# http://localhost:4321/cogent-union/admin/ in Chrome or Edge and choose
+# "Work with Local Repository". Saves are written to the files on disk, and
+# become public when they are committed and pushed.
+#
+# The GitHub backend below is the fallback for editing without a checkout:
+# "Sign In with GitHub Using PAT" and a token scoped to this repository.
+# A hosted OAuth endpoint (`base_url`) would replace the token; see README.
 # ---------------------------------------------------------------------------
 backend:
   name: github
   repo: Sorikairox/cogent-union
   branch: main
-  # Hosted OAuth endpoint that signs editors in with their GitHub account.
   # base_url: https://auth.example.org
 
-# Saves go through a pull request instead of straight to the branch.
-# Set to `simple` if editors should publish directly.
-publish_mode: editorial_workflow
-
-# Run `npm run dev`, open http://localhost:4321/admin/ and choose
-# "Work with Local Repository" to edit the files on disk without signing in.
+# Lets the CMS write to the working copy instead of calling the GitHub API.
 local_backend: true
 
+# Only applies when signed in to GitHub: a save opens a pull request instead of
+# committing to the branch. Set to `simple` to publish directly.
+publish_mode: editorial_workflow
+
 media_folder: public/uploads
+# Root-relative on purpose. The site's base path is added when the page is
+# built (see src/lib/rehype-base-urls.mjs), so moving to a custom domain or a
+# different sub-path needs no change to the stored content.
 public_folder: /uploads
 
 i18n:

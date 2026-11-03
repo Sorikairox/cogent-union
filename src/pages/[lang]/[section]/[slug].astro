@@ -1,7 +1,7 @@
 ---
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import Base from '../../../layouts/Base.astro';
-import { useTranslations, formatDate, path, type Lang } from '../../../i18n/utils';
+import { useTranslations, formatDate, path, withBase, type Lang } from '../../../i18n/utils';
 import {
   SECTIONS,
   SECTION_META,
@@ -48,6 +48,8 @@ for (const sibling of siblings) {
 }
 
 const minutes = readingTime(entry.body);
+// The CMS stores /uploads/..., which needs the site's base path to resolve.
+const cover = entry.data.cover?.startsWith('/') ? withBase(entry.data.cover) : entry.data.cover;
 const sectionHref = path(lang, SECTION_META[section].segment);
 const activeNav =
   section === 'statements' ? 'statements' : section === 'rights' ? 'rights' : undefined;
@@ -92,9 +94,7 @@ const activeNav =
     }
 
     {
-      entry.data.cover && (
-        <img src={entry.data.cover} alt={entry.data.coverAlt ?? ''} width="950" height="500" />
-      )
+      cover && <img src={cover} alt={entry.data.coverAlt ?? ''} width="950" height="500" />
     }
 
     <div class="prose">

@@ -13,11 +13,14 @@ The visual design reproduces the one used by
 
 ```bash
 npm install
-npm run dev      # http://localhost:4321
+npm run dev      # http://localhost:4321/cogent-union/
 npm run build    # static site in dist/
 npm run preview  # serve dist/ locally
 npm run check    # type-check pages, components and content schemas
 ```
+
+Stop `npm run dev` before running `npm run build`: both write the content cache
+in `.astro/`, and a build racing the dev server silently drops pages.
 
 ---
 
@@ -31,7 +34,7 @@ content/                  ← every article, as a file in this repository
   dossiers/{en,ja}/       ← background dossiers
   pages/{en,ja}/          ← about, demands, legal notice
 public/
-  admin/                  ← the CMS (config.yml + index.html)
+  cms-config.yml          ← CMS collections and fields
   uploads/                ← images added through the CMS
 src/
   site.config.mjs         ← site URL, repo, contact address, links
@@ -41,7 +44,7 @@ src/
   lib/content.ts          ← queries: by section, by language, by topic
   layouts/Base.astro      ← <head>, header, footer, language alternates
   components/             ← Header, Footer, ArticleList, LangSwitcher, Logo
-  pages/                  ← routes (see below)
+  pages/                  ← routes (see below), including admin/ (the CMS)
   styles/global.css       ← all of the design: colours, type, components
 ```
 
@@ -57,6 +60,7 @@ src/
 | `/en/about/`, `/en/demands/`, `/en/legal/` | standalone pages |
 | `/rss-en.xml`, `/rss-ja.xml` | RSS feed per language |
 | `/sitemap-index.xml` | sitemap |
+| `/admin/` | the content manager |
 
 ---
 
@@ -102,35 +106,61 @@ Notes:
 ## Editing with the CMS
 
 The CMS is [Sveltia CMS](https://github.com/sveltia/sveltia-cms) — a Git-based
-editor: there is no database, and every save is a commit against this
-repository.
+editor: there is no database and no server. It reads and writes the Markdown
+files in `content/`, so publishing an article is making a commit.
 
-### Locally, with no account
+### How the section edits (local repository mode)
 
-1. `npm run dev`
-2. Open <http://localhost:4321/admin/index.html> in Chrome or Edge.
-3. Choose **Work with Local Repository** and pick this folder.
+1. Clone this repository, once:
+   ```bash
+   git clone git@github.com:Sorikairox/cogent-union.git
+   cd cogent-union
+   npm install
+   ```
+2. Start the site:
+   ```bash
+   npm run dev
+   ```
+3. Open <http://localhost:4321/cogent-union/admin/> **in Chrome or Edge**, click
+   **Work with Local Repository** and pick the folder from step 1.
+4. Write. Each save writes the Markdown file on disk — nothing is public yet.
+   The site at <http://localhost:4321/cogent-union/> reloads as you go, so you
+   see the article exactly as readers will.
+5. Publish by committing and pushing:
+   ```bash
+   git add content public/uploads && git commit -m "Add: <article title>" && git push
+   ```
+   The deploy workflow takes about a minute.
 
-Changes are written straight to the files on disk; commit them as usual.
+Local mode needs a Chromium-based browser: it uses the File System Access API,
+which Firefox and Safari do not implement.
 
-### In production, for the section's editors
+Two editors should not work on the same article at the same time; otherwise
+whoever pushes second gets a merge conflict in a Markdown file. Pull before you
+start.
 
-1. Give editors write access to the repository on GitHub.
-2. Deploy an OAuth endpoint so they can sign in without a token — the
-   one-file Cloudflare Worker
-   [`sveltia-cms-auth`](https://github.com/sveltia/sveltia-cms-auth) does this.
-   Then uncomment `base_url:` in `config.yml` and point it at that worker.
-3. Editors go to <https://sorikairox.github.io/cogent-union/admin/> and sign
-   in with GitHub.
+### Editing without a checkout
 
-`publish_mode: editorial_workflow` means a save opens a pull request instead of
-publishing immediately. Set it to `simple` if the section would rather publish
-directly.
+The sign-in buttons on the same page use the GitHub API instead of the disk:
 
-**Alternative without any OAuth setup:** editors can use **Sign In with GitHub
-Using PAT** and a personal access token scoped to this repository.
+- **Sign In with GitHub Using PAT** — create a fine-grained personal access
+  token with read/write access to this repository, paste it once. Good enough
+  for a handful of editors.
+- **Sign In with GitHub** — needs a hosted OAuth endpoint, because the token
+  exchange requires a client secret that cannot live in a static site. Deploy
+  [`sveltia-cms-auth`](https://github.com/sveltia/sveltia-cms-auth) (a small
+  Cloudflare Worker), create a GitHub OAuth app pointing at it, then uncomment
+  `base_url:` in `public/cms-config.yml`. Worth it only when non-technical
+  editors join.
 
----
+Through either of those, `publish_mode: editorial_workflow` means a save opens
+a pull request rather than committing to `main`.
+
+### CMS configuration
+
+`public/cms-config.yml` declares the collections and their fields. It sits at
+the root of `public/`, not in `public/admin/`, because a directory there would
+shadow the `/admin/` route in `astro dev` and editors would get a 404.
 
 ## Changing the site's identity
 
@@ -146,7 +176,7 @@ Using PAT** and a personal access token scoped to this repository.
 
 1. Add the code to `languages` in `src/i18n/ui.ts` and write its block of strings.
 2. Add it to `i18n.locales` in `astro.config.mjs` and to `locales` in
-   `public/admin/config.yml`.
+   `public/cms-config.yml`.
 3. Create `content/<section>/<code>/` folders.
 
 Routes, feeds, sitemaps and the language switcher follow automatically.
