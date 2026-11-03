@@ -2,7 +2,6 @@
 title: This website is live
 description: Why the section now publishes online, and how the site is maintained.
 pubDate: 2026-10-29
-translationKey: website-launch
 topics:
   - Union life
 ---

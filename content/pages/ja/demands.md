@@ -1,7 +1,6 @@
 ---
 title: 私たちの要求
 description: 支部が求めていること、そして各項目の現状。
-translationKey: demands
 updatedDate: 2026-11-02
 ---
 

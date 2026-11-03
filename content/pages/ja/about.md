@@ -1,7 +1,6 @@
 ---
 title: 組合支部について
 description: 私たちは何者で、どのように活動し、どうすれば加入できるのか。
-translationKey: about
 updatedDate: 2026-11-02
 ---
 

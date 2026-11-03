@@ -1,7 +1,6 @@
 ---
 title: Legal notice
 description: Who publishes this site, where it is hosted and how it handles your data.
-translationKey: legal
 updatedDate: 2026-11-02
 ---
 

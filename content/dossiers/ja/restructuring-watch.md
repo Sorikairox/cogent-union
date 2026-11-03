@@ -2,7 +2,6 @@
 title: 組織再編 ― 現時点で分かっていること
 description: 再編についての継続特集。発表内容、スケジュール、そして会社側が書面で約束した事項。
 pubDate: 2026-10-28
-translationKey: restructuring-watch
 topics:
   - 組合活動
   - 賃金

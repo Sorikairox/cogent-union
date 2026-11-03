@@ -2,7 +2,6 @@
 title: Restructuring — what we know
 description: 'A running dossier on the reorganisation: announcements, timelines, and what management has committed to in writing.'
 pubDate: 2026-10-28
-translationKey: restructuring-watch
 topics:
   - Union life
   - Pay

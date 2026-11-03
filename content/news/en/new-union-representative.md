@@ -1,20 +1,20 @@
 ---
-title: A new union representative
-description: The section has appointed a new union representative. Here is what the role covers.
+title: A new union president
+description: The section has appointed a new union president. Here is what the role covers.
 pubDate: 2026-10-30
-translationKey: new-union-representative
+updatedDate: ''
 topics:
   - Union life
+author: ''
+coverAlt: ''
 ---
+The section has appointed a new union president, Thomas Cruveilher. The role is defined by our own rules, and it comes with concrete powers.
 
-The section has appointed a new union representative. The role is defined by law
-and by our own rules, and it comes with concrete powers.
-
-## What the representative does
+## What the president does
 
 - Takes part in negotiations with management on pay, working time and working conditions.
 - Accompanies any colleague who asks, in a meeting with management or HR.
-- Receives and relays questions from the floor, without naming anyone who asks to stay anonymous.
+- Receives and relays questions, without naming anyone who asks to stay anonymous.
 
 ## How to reach them
 

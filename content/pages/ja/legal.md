@@ -1,7 +1,6 @@
 ---
 title: 法的事項
 description: 本サイトの発行者、ホスティング、個人情報の取り扱いについて。
-translationKey: legal
 updatedDate: 2026-11-02
 ---
 

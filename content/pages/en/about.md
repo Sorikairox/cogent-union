@@ -1,7 +1,6 @@
 ---
 title: About the union section
 description: Who we are, how we work, and how to join.
-translationKey: about
 updatedDate: 2026-11-02
 ---
 

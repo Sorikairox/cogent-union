@@ -2,7 +2,6 @@
 title: 時間外労働 ― 支払われるべきもの
 description: 時間外労働の数え方、支払われるべき割増、そして数字が合わないときの対応。
 pubDate: 2026-11-01
-translationKey: overtime-basics
 topics:
   - 賃金
   - 労働時間

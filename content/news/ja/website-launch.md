@@ -2,7 +2,6 @@
 title: 本サイトを公開しました
 description: 支部がウェブで発信する理由と、サイトの運営方法について。
 pubDate: 2026-10-29
-translationKey: website-launch
 topics:
   - 組合活動
 ---

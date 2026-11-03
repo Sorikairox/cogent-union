@@ -1,7 +1,6 @@
 ---
 title: Our demands
 description: What the section is asking for, and where each demand stands.
-translationKey: demands
 updatedDate: 2026-11-02
 ---
 

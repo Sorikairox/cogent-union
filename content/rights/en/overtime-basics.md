@@ -2,7 +2,6 @@
 title: Overtime — what you are owed
 description: How overtime is counted, what it must be paid, and what to do when the numbers do not match.
 pubDate: 2026-11-01
-translationKey: overtime-basics
 topics:
   - Pay
   - Working time
