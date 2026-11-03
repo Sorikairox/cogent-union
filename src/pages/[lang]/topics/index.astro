@@ -1,0 +1,36 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { locales, useTranslations, path, type Lang } from '../../../i18n/utils';
+import { getTopics, topicSlug } from '../../../lib/content';
+
+export function getStaticPaths() {
+  return locales.map((lang) => ({ params: { lang } }));
+}
+
+const lang = Astro.params.lang as Lang;
+const t = useTranslations(lang);
+const topics = await getTopics(lang);
+const alternates = Object.fromEntries(locales.map((l) => [l, path(l, 'topics')])) as Record<Lang, string>;
+---
+
+<Base lang={lang} title={t('topics.title')} alternates={alternates}>
+  <div class="card">
+    <h1>{t('topics.title')}</h1>
+    <p>{t('topics.intro')}</p>
+    {
+      topics.length > 0 ? (
+        <ul class="topics">
+          {topics.map(({ topic, count }) => (
+            <li>
+              <a class="topic-chip" href={path(lang, 'topics', topicSlug(topic))}>
+                {topic} ({count})
+              </a>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>{t('empty.section')}</p>
+      )
+    }
+  </div>
+</Base>

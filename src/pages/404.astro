@@ -1,0 +1,23 @@
+---
+import Base from '../layouts/Base.astro';
+import { defaultLang, useTranslations, locales, path } from '../i18n/utils';
+const t = useTranslations(defaultLang);
+const alternates = Object.fromEntries(locales.map((l) => [l, path(l)]));
+---
+
+<Base lang={defaultLang} title={t('404.title')} alternates={alternates}>
+  <div class="card">
+    <h1>{t('404.title')}</h1>
+    <p>{t('404.body')}</p>
+    <p lang="ja">ページが見つかりません。</p>
+    <p>
+      {
+        locales.map((l) => (
+          <>
+            <a class="more" href={path(l)}>{t('404.back')} ({l.toUpperCase()})</a>{' '}
+          </>
+        ))
+      }
+    </p>
+  </div>
+</Base>

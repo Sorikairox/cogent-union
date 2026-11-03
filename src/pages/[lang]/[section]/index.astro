@@ -1,0 +1,69 @@
+---
+import Base from '../../../layouts/Base.astro';
+import ArticleList from '../../../components/ArticleList.astro';
+import { locales, useTranslations, path, type Lang } from '../../../i18n/utils';
+import {
+  SECTIONS,
+  SECTION_META,
+  getArticles,
+  topicSlug,
+  type SectionName,
+} from '../../../lib/content';
+
+export function getStaticPaths() {
+  return locales.flatMap((lang) =>
+    SECTIONS.map((section) => ({
+      params: { lang, section: SECTION_META[section].segment },
+      props: { section },
+    })),
+  );
+}
+
+const lang = Astro.params.lang as Lang;
+const { section } = Astro.props as { section: SectionName };
+const t = useTranslations(lang);
+
+const entries = await getArticles(section, lang);
+const items = entries.map((entry) => ({ section, entry }));
+
+const topics = [...new Set(entries.flatMap((e) => e.data.topics))].sort();
+
+const alternates = Object.fromEntries(
+  locales.map((l) => [l, path(l, SECTION_META[section].segment)]),
+) as Record<Lang, string>;
+
+const title = t(SECTION_META[section].titleKey);
+const activeNav =
+  section === 'statements' ? 'statements' : section === 'rights' ? 'rights' : undefined;
+---
+
+<Base lang={lang} title={title} alternates={alternates} active={activeNav}>
+  <div class="card">
+    <h1>{title}</h1>
+
+    {
+      topics.length > 0 && (
+        <section aria-labelledby="topics-heading">
+          <h2 id="topics-heading" class="kicker">{t('meta.byTopic')}</h2>
+          <ul class="topics">
+            {topics.map((topic) => (
+              <li>
+                <a class="topic-chip" href={path(lang, 'topics', topicSlug(topic))}>{topic}</a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )
+    }
+
+    <div style="margin-top:1.5rem">
+      {
+        items.length > 0 ? (
+          <ArticleList lang={lang} items={items} showKicker={false} showExcerpt />
+        ) : (
+          <p>{t('empty.section')}</p>
+        )
+      }
+    </div>
+  </div>
+</Base>

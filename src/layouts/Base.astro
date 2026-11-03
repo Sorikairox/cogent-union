@@ -1,0 +1,63 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { useTranslations, locales, type Lang } from '../i18n/utils';
+import { SITE } from '../site.config.mjs';
+
+interface Props {
+  lang: Lang;
+  title?: string;
+  description?: string;
+  /** Path to the same page in each language, for <link rel="alternate"> and the switcher. */
+  alternates?: Partial<Record<Lang, string>>;
+  active?: string;
+  /** Article metadata for Open Graph, when the page is an article. */
+  publishedTime?: Date;
+}
+
+const { lang, title, description, alternates = {}, active, publishedTime } = Astro.props;
+const t = useTranslations(lang);
+
+const siteName = t('site.name');
+const pageTitle = title ? `${title} | ${siteName}` : `${siteName} — ${t('site.tagline')}`;
+const metaDescription = description || t('site.description');
+const canonical = new URL(Astro.url.pathname, Astro.site ?? SITE.url).toString();
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={metaDescription} />
+    <link rel="canonical" href={canonical} />
+    {
+      locales.map((code) =>
+        alternates[code] ? (
+          <link rel="alternate" hreflang={code} href={new URL(alternates[code]!, Astro.site ?? SITE.url).toString()} />
+        ) : null,
+      )
+    }
+    <link rel="alternate" type="application/rss+xml" title={siteName} href={`/rss-${lang}.xml`} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:type" content={publishedTime ? 'article' : 'website'} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={metaDescription} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:locale" content={lang === 'ja' ? 'ja_JP' : 'en_GB'} />
+    {publishedTime && <meta property="article:published_time" content={publishedTime.toISOString()} />}
+    <meta name="twitter:card" content="summary" />
+    <meta name="generator" content={Astro.generator} />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">{t('nav.skip')}</a>
+    <Header lang={lang} alternates={alternates} active={active} />
+    <main id="main" class="page">
+      <slot />
+    </main>
+    <Footer lang={lang} />
+  </body>
+</html>

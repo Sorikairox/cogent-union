@@ -1,0 +1,24 @@
+---
+/**
+ * Placeholder union mark. Replace the SVG below (or swap it for an <img>
+ * pointing at /public/logo.svg) with the section's own logo.
+ */
+interface Props {
+  class?: string;
+  title?: string;
+}
+const { class: className = 'mark', title = '' } = Astro.props;
+---
+
+<svg
+  class={className}
+  viewBox="0 0 64 64"
+  role={title ? 'img' : 'presentation'}
+  aria-hidden={title ? undefined : 'true'}
+  aria-label={title || undefined}
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <rect width="64" height="64" fill="#d11a1d"></rect>
+  <path d="M14 12h10v26a8 8 0 0 0 16 0V12h10v26a18 18 0 0 1-36 0z" fill="#fff"></path>
+  <rect x="14" y="48" width="36" height="5" fill="#fee901"></rect>
+</svg>

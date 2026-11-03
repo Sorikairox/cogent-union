@@ -1,0 +1,106 @@
+---
+import Base from '../../layouts/Base.astro';
+import ArticleList from '../../components/ArticleList.astro';
+import { locales, useTranslations, formatDate, path, type Lang } from '../../i18n/utils';
+import { getArticles, getAllArticles, splitId } from '../../lib/content';
+import { SITE } from '../../site.config.mjs';
+
+export function getStaticPaths() {
+  return locales.map((lang) => ({ params: { lang } }));
+}
+
+const lang = Astro.params.lang as Lang;
+const t = useTranslations(lang);
+
+const statements = await getArticles('statements', lang);
+const featured = statements.find((e) => e.data.featured) ?? statements[0];
+const rights = await getArticles('rights', lang);
+const dossiers = await getArticles('dossiers', lang);
+const latest = (await getAllArticles(lang))
+  .filter(({ entry }) => entry.id !== featured?.id)
+  .slice(0, 5);
+
+const alternates = Object.fromEntries(locales.map((l) => [l, path(l)])) as Record<Lang, string>;
+---
+
+<Base lang={lang} alternates={alternates} active="home">
+  <div class="card">
+    <p class="tagline">{t('site.tagline')}</p>
+
+    {
+      featured && (
+        <section class="featured" aria-labelledby="featured-heading">
+          <h2 id="featured-heading">{t('home.featured')}</h2>
+          <p class="kicker">{t('label.statement')}</p>
+          <p class="headline">
+            <span class="slash">
+              <span>
+                <a href={path(lang, 'statements', splitId(featured.id).slug)}>{featured.data.title}</a>
+              </span>
+            </span>
+          </p>
+          <p class="meta" style="color:#fff">
+            {t('meta.publishedOn')}{' '}
+            <time datetime={featured.data.pubDate.toISOString()}>
+              {formatDate(featured.data.pubDate, lang)}
+            </time>
+          </p>
+          {featured.data.description && <p>{featured.data.description}</p>}
+          <p>
+            <a class="btn btn-yellow" href={path(lang, 'statements', splitId(featured.id).slug)}>
+              <span>{t('home.readStatement')}</span>
+            </a>
+          </p>
+          <p><a class="more" href={path(lang, 'statements')}>{t('home.allStatements')} →</a></p>
+        </section>
+      )
+    }
+
+    <section aria-labelledby="rights-heading">
+      <h2 id="rights-heading">{t('home.rights')}</h2>
+      {
+        rights.length > 0 ? (
+          <ArticleList lang={lang} items={rights.slice(0, 4).map((entry) => ({ section: 'rights' as const, entry }))} showKicker={false} showExcerpt />
+        ) : (
+          <p>{t('home.rightsIntro')}</p>
+        )
+      }
+      <p><a class="more" href={path(lang, 'rights')}>{t('home.allRights')} →</a></p>
+    </section>
+
+    <section aria-labelledby="latest-heading">
+      <h2 id="latest-heading">{t('home.latest')}</h2>
+      {
+        latest.length > 0 ? (
+          <ArticleList lang={lang} items={latest} />
+        ) : (
+          <p>{t('empty.section')}</p>
+        )
+      }
+      <div class="list-links">
+        <a class="more" href={path(lang, 'news')}>{t('home.allNews')} →</a>
+        <a class="more" href={path(lang, 'topics')}>{t('home.browseTopics')} →</a>
+      </div>
+    </section>
+
+    <section class="rule-block" aria-labelledby="dossier-heading">
+      <h2 id="dossier-heading">{t('home.dossier')}</h2>
+      {
+        dossiers.length > 0 ? (
+          <ArticleList lang={lang} items={dossiers.slice(0, 3).map((entry) => ({ section: 'dossiers' as const, entry }))} showKicker={false} showExcerpt />
+        ) : (
+          <p>{t('home.dossierIntro')}</p>
+        )
+      }
+      <p><a class="more" href={path(lang, 'dossiers')}>{t('home.allDossiers')} →</a></p>
+    </section>
+
+    <section class="cta-dark" aria-labelledby="contact-heading">
+      <h2 id="contact-heading">{t('home.questionTitle')}</h2>
+      <p>{t('home.questionBody')}</p>
+      <p>
+        <a class="btn btn-yellow" href={`mailto:${SITE.email}`}><span>{t('cta.contactLong')}</span></a>
+      </p>
+    </section>
+  </div>
+</Base>

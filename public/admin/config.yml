@@ -1,0 +1,309 @@
+# ---------------------------------------------------------------------------
+# Sveltia CMS - a Git-based headless CMS.
+# Every article edited here is written back as a Markdown file in this
+# repository, under /content. Nothing is stored in a database.
+#
+# Before going live, set `repo` below to your own GitHub repository and point
+# `base_url` at your OAuth endpoint (see README.md -> "Editing with the CMS").
+# ---------------------------------------------------------------------------
+backend:
+  name: github
+  repo: OWNER/union-website
+  branch: main
+  # Hosted OAuth endpoint that signs editors in with their GitHub account.
+  # base_url: https://auth.example.org
+
+# Saves go through a pull request instead of straight to the branch.
+# Set to `simple` if editors should publish directly.
+publish_mode: editorial_workflow
+
+# Run `npm run dev`, open http://localhost:4321/admin/ and choose
+# "Work with Local Repository" to edit the files on disk without signing in.
+local_backend: true
+
+media_folder: public/uploads
+public_folder: /uploads
+
+i18n:
+  structure: multiple_folders
+  locales: [en, ja]
+  default_locale: en
+
+collections:
+  - name: statements
+    label: Statements
+    label_singular: Statement
+    folder: content/statements
+    create: true
+    slug: '{{slug}}'
+    extension: md
+    format: frontmatter
+    i18n: true
+    summary: '{{title}} - {{pubDate}}'
+    sortable_fields: [pubDate, title]
+    fields:
+      - { name: title, label: Title, widget: string, i18n: true }
+      - { name: description, label: Summary, widget: text, required: false, i18n: true }
+      - name: pubDate
+        label: Publication date
+        widget: datetime
+        date_format: YYYY-MM-DD
+        time_format: false
+        format: YYYY-MM-DD
+        picker_utc: true
+        i18n: duplicate
+      - name: updatedDate
+        label: Last updated
+        widget: datetime
+        date_format: YYYY-MM-DD
+        time_format: false
+        format: YYYY-MM-DD
+        picker_utc: true
+        required: false
+        i18n: true
+      - name: translationKey
+        label: Translation key
+        widget: string
+        i18n: duplicate
+        hint: >-
+          The same value in every language. This is what links the English and
+          Japanese versions of one article together.
+      - name: topics
+        label: Topics
+        widget: list
+        required: false
+        i18n: true
+        hint: Translate the labels - each language has its own list of topics.
+      - { name: author, label: Author, widget: string, required: false, i18n: true }
+      - { name: cover, label: Cover image, widget: image, required: false, i18n: duplicate }
+      - { name: coverAlt, label: Cover image description, widget: string, required: false, i18n: true }
+      - name: featured
+        label: Featured on the home page
+        widget: boolean
+        default: false
+        required: false
+        i18n: duplicate
+      - name: draft
+        label: Draft
+        widget: boolean
+        default: false
+        required: false
+        i18n: true
+        hint: A draft is never published. It can be set per language.
+      - { name: body, label: Body, widget: markdown, i18n: true }
+
+  - name: news
+    label: News
+    label_singular: News post
+    folder: content/news
+    create: true
+    slug: '{{slug}}'
+    extension: md
+    format: frontmatter
+    i18n: true
+    summary: '{{title}} - {{pubDate}}'
+    sortable_fields: [pubDate, title]
+    fields:
+      - { name: title, label: Title, widget: string, i18n: true }
+      - { name: description, label: Summary, widget: text, required: false, i18n: true }
+      - name: pubDate
+        label: Publication date
+        widget: datetime
+        date_format: YYYY-MM-DD
+        time_format: false
+        format: YYYY-MM-DD
+        picker_utc: true
+        i18n: duplicate
+      - name: updatedDate
+        label: Last updated
+        widget: datetime
+        date_format: YYYY-MM-DD
+        time_format: false
+        format: YYYY-MM-DD
+        picker_utc: true
+        required: false
+        i18n: true
+      - name: translationKey
+        label: Translation key
+        widget: string
+        i18n: duplicate
+        hint: >-
+          The same value in every language. This is what links the English and
+          Japanese versions of one article together.
+      - name: topics
+        label: Topics
+        widget: list
+        required: false
+        i18n: true
+        hint: Translate the labels - each language has its own list of topics.
+      - { name: author, label: Author, widget: string, required: false, i18n: true }
+      - { name: cover, label: Cover image, widget: image, required: false, i18n: duplicate }
+      - { name: coverAlt, label: Cover image description, widget: string, required: false, i18n: true }
+      - name: featured
+        label: Featured on the home page
+        widget: boolean
+        default: false
+        required: false
+        i18n: duplicate
+      - name: draft
+        label: Draft
+        widget: boolean
+        default: false
+        required: false
+        i18n: true
+        hint: A draft is never published. It can be set per language.
+      - { name: body, label: Body, widget: markdown, i18n: true }
+
+  - name: rights
+    label: Practical guides
+    label_singular: Practical guide
+    folder: content/rights
+    create: true
+    slug: '{{slug}}'
+    extension: md
+    format: frontmatter
+    i18n: true
+    summary: '{{title}} - {{pubDate}}'
+    sortable_fields: [pubDate, title]
+    fields:
+      - { name: title, label: Title, widget: string, i18n: true }
+      - { name: description, label: Summary, widget: text, required: false, i18n: true }
+      - name: pubDate
+        label: Publication date
+        widget: datetime
+        date_format: YYYY-MM-DD
+        time_format: false
+        format: YYYY-MM-DD
+        picker_utc: true
+        i18n: duplicate
+      - name: updatedDate
+        label: Last updated
+        widget: datetime
+        date_format: YYYY-MM-DD
+        time_format: false
+        format: YYYY-MM-DD
+        picker_utc: true
+        required: false
+        i18n: true
+      - name: translationKey
+        label: Translation key
+        widget: string
+        i18n: duplicate
+        hint: >-
+          The same value in every language. This is what links the English and
+          Japanese versions of one article together.
+      - name: topics
+        label: Topics
+        widget: list
+        required: false
+        i18n: true
+        hint: Translate the labels - each language has its own list of topics.
+      - { name: author, label: Author, widget: string, required: false, i18n: true }
+      - { name: cover, label: Cover image, widget: image, required: false, i18n: duplicate }
+      - { name: coverAlt, label: Cover image description, widget: string, required: false, i18n: true }
+      - name: featured
+        label: Featured on the home page
+        widget: boolean
+        default: false
+        required: false
+        i18n: duplicate
+      - name: draft
+        label: Draft
+        widget: boolean
+        default: false
+        required: false
+        i18n: true
+        hint: A draft is never published. It can be set per language.
+      - { name: body, label: Body, widget: markdown, i18n: true }
+
+  - name: dossiers
+    label: Dossiers
+    label_singular: Dossier
+    folder: content/dossiers
+    create: true
+    slug: '{{slug}}'
+    extension: md
+    format: frontmatter
+    i18n: true
+    summary: '{{title}} - {{pubDate}}'
+    sortable_fields: [pubDate, title]
+    fields:
+      - { name: title, label: Title, widget: string, i18n: true }
+      - { name: description, label: Summary, widget: text, required: false, i18n: true }
+      - name: pubDate
+        label: Publication date
+        widget: datetime
+        date_format: YYYY-MM-DD
+        time_format: false
+        format: YYYY-MM-DD
+        picker_utc: true
+        i18n: duplicate
+      - name: updatedDate
+        label: Last updated
+        widget: datetime
+        date_format: YYYY-MM-DD
+        time_format: false
+        format: YYYY-MM-DD
+        picker_utc: true
+        required: false
+        i18n: true
+      - name: translationKey
+        label: Translation key
+        widget: string
+        i18n: duplicate
+        hint: >-
+          The same value in every language. This is what links the English and
+          Japanese versions of one article together.
+      - name: topics
+        label: Topics
+        widget: list
+        required: false
+        i18n: true
+        hint: Translate the labels - each language has its own list of topics.
+      - { name: author, label: Author, widget: string, required: false, i18n: true }
+      - { name: cover, label: Cover image, widget: image, required: false, i18n: duplicate }
+      - { name: coverAlt, label: Cover image description, widget: string, required: false, i18n: true }
+      - name: featured
+        label: Featured on the home page
+        widget: boolean
+        default: false
+        required: false
+        i18n: duplicate
+      - name: draft
+        label: Draft
+        widget: boolean
+        default: false
+        required: false
+        i18n: true
+        hint: A draft is never published. It can be set per language.
+      - { name: body, label: Body, widget: markdown, i18n: true }
+
+  - name: pages
+    label: Pages
+    label_singular: Page
+    folder: content/pages
+    create: true
+    slug: '{{slug}}'
+    extension: md
+    format: frontmatter
+    i18n: true
+    summary: '{{title}}'
+    fields:
+      - { name: title, label: Title, widget: string, i18n: true }
+      - { name: description, label: Summary, widget: text, required: false, i18n: true }
+      - name: translationKey
+        label: Translation key
+        widget: string
+        i18n: duplicate
+        hint: The same value in every language.
+      - name: updatedDate
+        label: Last updated
+        widget: datetime
+        date_format: YYYY-MM-DD
+        time_format: false
+        format: YYYY-MM-DD
+        picker_utc: true
+        required: false
+        i18n: true
+      - { name: draft, label: Draft, widget: boolean, default: false, required: false, i18n: true }
+      - { name: body, label: Body, widget: markdown, i18n: true }

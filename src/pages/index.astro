@@ -1,0 +1,27 @@
+---
+/** Root URL: send visitors to their language, falling back to the default one. */
+import { defaultLang, locales } from '../i18n/utils';
+const target = `/${defaultLang}/`;
+---
+
+<!doctype html>
+<html lang={defaultLang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content={`0; url=${target}`} />
+    <link rel="canonical" href={target} />
+    <title>Redirecting…</title>
+    <script is:inline define:vars={{ locales, target }}>
+      // Prefer a language the visitor actually reads, when we publish it.
+      const match = navigator.languages
+        ?.map((l) => l.slice(0, 2).toLowerCase())
+        .find((l) => locales.includes(l));
+      location.replace(match ? `/${match}/` : target);
+    </script>
+  </head>
+  <body>
+    <p>
+      {locales.map((l) => (<a href={`/${l}/`}>{l.toUpperCase()}</a>))}
+    </p>
+  </body>
+</html>

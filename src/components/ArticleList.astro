@@ -1,0 +1,39 @@
+---
+import { useTranslations, formatDate, path, type Lang } from '../i18n/utils';
+import { SECTION_META, splitId, type AnyArticle, type SectionName } from '../lib/content';
+
+interface Props {
+  lang: Lang;
+  items: { section: SectionName; entry: AnyArticle }[];
+  /** Show the "News"/"Statement" kicker above each title. */
+  showKicker?: boolean;
+  /** Show the article description under the date. */
+  showExcerpt?: boolean;
+}
+const { lang, items, showKicker = true, showExcerpt = false } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<ul class="article-list">
+  {
+    items.map(({ section, entry }) => {
+      const { slug } = splitId(entry.id);
+      const href = path(lang, SECTION_META[section].segment, slug);
+      return (
+        <li>
+          {showKicker && <p class="kicker">{t(SECTION_META[section].labelKey)}</p>}
+          <h3 class="article-title"><a href={href}>{entry.data.title}</a></h3>
+          <p class="meta">
+            {t('meta.publishedOn')}{' '}
+            <time datetime={entry.data.pubDate.toISOString()}>
+              {formatDate(entry.data.pubDate, lang)}
+            </time>
+          </p>
+          {showExcerpt && entry.data.description && (
+            <p class="excerpt">{entry.data.description}</p>
+          )}
+        </li>
+      );
+    })
+  }
+</ul>

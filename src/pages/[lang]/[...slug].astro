@@ -1,0 +1,59 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { useTranslations, formatDate, path, type Lang } from '../../i18n/utils';
+import { splitId } from '../../lib/content';
+
+/** Standalone pages: /content/pages/<lang>/<slug>.md (about, demands, legal…). */
+export async function getStaticPaths() {
+  const entries = await getCollection('pages');
+  return entries
+    .filter((entry) => !entry.data.draft)
+    .map((entry) => {
+      const { lang, slug } = splitId(entry.id);
+      return { params: { lang, slug }, props: { entry } };
+    });
+}
+
+const lang = Astro.params.lang as Lang;
+const { entry } = Astro.props as { entry: CollectionEntry<'pages'> };
+const t = useTranslations(lang);
+const { Content } = await render(entry);
+
+const siblings = (await getCollection('pages')).filter(
+  (e) => e.data.translationKey === entry.data.translationKey && !e.data.draft,
+);
+const alternates: Partial<Record<Lang, string>> = {};
+for (const sibling of siblings) {
+  const { lang: siblingLang, slug } = splitId(sibling.id);
+  alternates[siblingLang] = path(siblingLang, slug);
+}
+
+const { slug } = splitId(entry.id);
+const active = slug === 'demands' ? 'demands' : slug === 'about' ? 'about' : undefined;
+---
+
+<Base
+  lang={lang}
+  title={entry.data.title}
+  description={entry.data.description}
+  alternates={alternates}
+  active={active}
+>
+  <article class="card">
+    <h1>{entry.data.title}</h1>
+    {
+      entry.data.updatedDate && (
+        <p class="meta">
+          {t('meta.updatedOn')}{' '}
+          <time datetime={entry.data.updatedDate.toISOString()}>
+            {formatDate(entry.data.updatedDate, lang)}
+          </time>
+        </p>
+      )
+    }
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+</Base>

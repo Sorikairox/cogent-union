@@ -1,0 +1,53 @@
+---
+import Logo from './Logo.astro';
+import { useTranslations, path, type Lang } from '../i18n/utils';
+import { SITE } from '../site.config.mjs';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const year = new Date().getFullYear();
+---
+
+<div class="footer-stripes" aria-hidden="true"><span></span><span></span></div>
+
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="brand-row">
+        <Logo class="mark" />
+        <span class="name">{t('site.name')}</span>
+      </div>
+      <p class="tagline">{t('site.tagline')}</p>
+      <p>{t('site.footerLine')}</p>
+    </div>
+
+    <div class="footer-talk">
+      <h2><span>{t('footer.talk')}</span></h2>
+      <p>{t('footer.talkBody')}</p>
+      <a class="btn btn-yellow" href={`mailto:${SITE.email}`}>
+        <span>{t('cta.contact')} →</span>
+      </a>
+    </div>
+
+    <div class="footer-links">
+      <h2>{t('footer.keepInTouch')}</h2>
+      <ul>
+        <li><a href={path(lang, 'topics')}>{t('meta.topics')}</a></li>
+        <li><a href={path(lang, 'news')}>{t('section.news')}</a></li>
+        <li><a href={`/rss-${lang}.xml`}>{t('footer.rss')}</a></li>
+        {SITE.links.discord && <li><a href={SITE.links.discord}>{t('footer.discordCta')}</a></li>}
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>© {t('footer.rights')} · {year}</span>
+    <span>
+      <a href={path(lang, 'legal')}>{t('footer.legal')}</a>
+      · <a href="#main">{t('footer.backToTop')} ↑</a>
+    </span>
+  </div>
+</footer>

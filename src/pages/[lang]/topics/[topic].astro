@@ -1,0 +1,43 @@
+---
+import Base from '../../../layouts/Base.astro';
+import ArticleList from '../../../components/ArticleList.astro';
+import { locales, useTranslations, path, type Lang } from '../../../i18n/utils';
+import { getAllArticles, getTopics, topicSlug } from '../../../lib/content';
+
+export async function getStaticPaths() {
+  const paths = [];
+  for (const lang of locales) {
+    for (const { topic } of await getTopics(lang)) {
+      paths.push({ params: { lang, topic: topicSlug(topic) }, props: { topic } });
+    }
+  }
+  return paths;
+}
+
+const lang = Astro.params.lang as Lang;
+const { topic } = Astro.props as { topic: string };
+const t = useTranslations(lang);
+
+const items = (await getAllArticles(lang)).filter(({ entry }) => entry.data.topics.includes(topic));
+
+// The same topic may exist in the other language under a different label,
+// so the switcher points at that language's topic index.
+const alternates = Object.fromEntries(locales.map((l) => [l, path(l, 'topics')])) as Record<Lang, string>;
+---
+
+<Base lang={lang} title={`${t('meta.topic')}: ${topic}`} alternates={alternates}>
+  <div class="card">
+    <p class="kicker">{t('meta.topic')}</p>
+    <h1>{topic}</h1>
+    {
+      items.length > 0 ? (
+        <ArticleList lang={lang} items={items} showExcerpt />
+      ) : (
+        <p>{t('empty.section')}</p>
+      )
+    }
+    <p style="margin-top:2rem">
+      <a class="more" href={path(lang, 'topics')}>← {t('topics.title')}</a>
+    </p>
+  </div>
+</Base>
