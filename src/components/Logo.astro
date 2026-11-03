@@ -1,9 +1,8 @@
 ---
 /**
- * The union's mark: three figures standing together on a yellow line.
- * Kept as chunky geometry on purpose — it has to stay legible at 36px in the
- * header and at 16px as a favicon. Replace public/favicon.svg to match if you
- * change it here.
+ * The union's mark: a C on the union's red, over a yellow line.
+ * One thick stroke on purpose — it has to stay legible at 36px in the header
+ * and at 16px as a favicon. Keep public/favicon.svg in step with any change.
  */
 interface Props {
   class?: string;
@@ -21,13 +20,6 @@ const { class: className = 'mark', title = '' } = Astro.props;
   xmlns="http://www.w3.org/2000/svg"
 >
   <rect width="64" height="64" fill="#d11a1d"></rect>
-  <g fill="#fff">
-    <circle cx="14" cy="18" r="6"></circle>
-    <rect x="7" y="27" width="14" height="19" rx="3"></rect>
-    <circle cx="32" cy="15" r="6"></circle>
-    <rect x="25" y="24" width="14" height="22" rx="3"></rect>
-    <circle cx="50" cy="18" r="6"></circle>
-    <rect x="43" y="27" width="14" height="19" rx="3"></rect>
-  </g>
-  <rect x="7" y="50" width="50" height="6" fill="#fee901"></rect>
+  <path d="M46 17a18 18 0 1 0 0 30" fill="none" stroke="#fff" stroke-width="10"></path>
+  <rect x="14" y="52" width="36" height="7" fill="#fee901"></rect>
 </svg>
