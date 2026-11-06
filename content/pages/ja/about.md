@@ -46,7 +46,15 @@ updatedDate: 2026-11-06
 
 - **3年連続で5%を超える賃上げ。** 春闘で、国内最大の労働組合の連合体である連合の加盟組合は、平均で2024年に5.10%、2025年に5.25%、[2026年に5.01%](https://english.adnkronos.com/2026/07/03/japan-unions-clinch-5-01-pct-wage-hikes-in-2026-shunto/)の賃上げを勝ち取りました。
 - **日本郵便の非正規社員の待遇改善。** 組合の支援を受けた非正規社員が日本郵便を訴え、2020年10月、最高裁は扶養手当、年末年始勤務手当、有給の病気休暇、夏期・冬期休暇を非正規社員に認めないことは不合理で違法だと判断しました（[Japan Times](https://www.japantimes.co.jp/news/2020/10/15/national/crime-legal/supreme-court-japan-post-nonregular/)）。
-- **配達員も「労働者」と認定。** 2022年11月、東京都労働委員会は、ウーバーイーツの配達員が労働組合法上の労働者にあたると認め、ウーバーイーツユニオンとの団体交渉に応じるよう会社に命じました（[弁護士ドットコム](https://www.bengo4.com/c_5/n_15312/)）。会社側は中央労働委員会に再審査を申し立てています。
+
+### 東ゼン労組
+
+[東ゼン労組](https://tozenunion.org/)は、外国籍の組合員が多い東京の労働組合です。これまでの勝利の一部を紹介します。
+
+- **英語での団体交渉。** 2016年8月、東京都労働委員会は東京学芸大学に対し、日本語での交渉や組合側による通訳の同行を条件とせずに東ゼンとの団体交渉に応じること、そして交渉を拒んだことについて謝罪することを命じました（[東ゼン](https://tozenunion.org/tozen-union-wins-precedent-setting-negotiating-language-case-against-tokyo-gakugei-university/)）。
+- **ビラ配りの妨害は違法。** 2016年1月、都労委は日本外国語専門学校が東ゼンのビラ配りを違法に妨害したと認め、妨害をやめ、謝罪文を職場に10日間掲示するよう命じました。2018年3月、中央労働委員会もこの命令を支持しました（[東ゼン](https://tozenunion.org/national-labor-board-upholds-ruling-against-jcfl/)）。
+- **交渉拒否は不当労働行為。** 2025年2月、都労委は東京国際フランス学園が東ゼンとの交渉を拒んだことを不当労働行為と認め、再発しないことを約束する文書を組合に送るよう命じました（[東ゼン](https://tozenunion.org/commission-orders-lycee-francais-to-negotiate-with-tozen/)）。
+- **時間外の業務にも賃金を。** 2025年11月、東京高裁は同じ学校で働く東ゼン組合員の訴えを認めた判決を支持し、契約時間外の会議や事務作業も労働時間にあたるとして、未払い賃金と付加金の全額支払いを命じました（[東ゼン](https://tozenunion.org/tozen-member-secures-landmark-victory-at-tokyo-high-court/)）。
 
 ## 私たちについて
 

@@ -73,10 +73,29 @@ company to put it right, for example to take someone back or to bargain.
   Court ruled that denying them family allowances, year-end allowances, paid
   sick leave and summer and winter holidays was unreasonable and illegal
   ([Japan Times](https://www.japantimes.co.jp/news/2020/10/15/national/crime-legal/supreme-court-japan-post-nonregular/)).
-- **Delivery riders recognized as workers.** In November 2022 the Tokyo Labor
-  Relations Commission ruled that Uber Eats couriers are workers under the Labor
-  Union Act and ordered the company to bargain with the Uber Eats Union
-  ([HRM Asia](https://hrmasia.com/uber-eats-delivery-staff-in-tokyo-granted-worker-status/)). Uber has asked the national commission to review it.
+
+### Tozen Union
+
+[Tozen Union](https://tozenunion.org/) is a Tokyo union with many non-Japanese
+members. Some of its wins:
+
+- **Bargaining in English.** In August 2016 the Tokyo Labor Relations
+  Commission ordered Tokyo Gakugei University to bargain with Tozen without
+  insisting on Japanese or making the union bring an interpreter, and to
+  apologize for refusing ([Tozen](https://tozenunion.org/tozen-union-wins-precedent-setting-negotiating-language-case-against-tokyo-gakugei-university/)).
+- **Leafleting protected.** In January 2016 the commission ruled that the Japan
+  College of Foreign Languages had illegally obstructed Tozen's leafleting, and
+  ordered it to stop and to post an apology at the workplace for ten days. The
+  national Central Labor Relations Commission upheld this in March 2018
+  ([Tozen](https://tozenunion.org/national-labor-board-upholds-ruling-against-jcfl/)).
+- **No refusing to negotiate.** In February 2025 the commission ruled that the
+  Lycée Français International de Tokyo's refusal to negotiate with Tozen was an
+  unfair labor practice, and ordered the school to promise in writing not to do
+  it again ([Tozen](https://tozenunion.org/commission-orders-lycee-francais-to-negotiate-with-tozen/)).
+- **Unpaid work has to be paid.** In November 2025 the Tokyo High Court upheld a
+  ruling for a Tozen member at the same school: meetings and admin work outside
+  his contracted hours counted as working time, and the school had to pay all
+  outstanding wages and penalties ([Tozen](https://tozenunion.org/tozen-member-secures-landmark-victory-at-tokyo-high-court/)).
 
 ## Who we are
 
