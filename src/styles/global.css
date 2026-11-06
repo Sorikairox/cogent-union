@@ -45,6 +45,9 @@
 }
 
 html {
+  /* What iOS shows when the page is pulled past either end. The footer is the
+     last thing on every page, so matching it hides the seam at the bottom. */
+  background: var(--dark);
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
 }
