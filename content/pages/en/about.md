@@ -76,8 +76,8 @@ company to put it right, for example to take someone back or to bargain.
 
 ### Tozen Union
 
-[Tozen Union](https://tozenunion.org/) is a Tokyo union with many non-Japanese
-members. Some of its wins:
+[Tozen Union](https://tozenunion.org/) is a Tokyo-based union with members
+throughout the country. Some of its wins:
 
 - **Bargaining in English.** In August 2016 the Tokyo Labor Relations
   Commission ordered Tokyo Gakugei University to bargain with Tozen without

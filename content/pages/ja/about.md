@@ -49,7 +49,7 @@ updatedDate: 2026-11-06
 
 ### 東ゼン労組
 
-[東ゼン労組](https://tozenunion.org/)は、外国籍の組合員が多い東京の労働組合です。これまでの勝利の一部を紹介します。
+[東ゼン労組](https://tozenunion.org/)は、東京に本部を置き、全国に組合員がいる労働組合です。これまでの勝利の一部を紹介します。
 
 - **英語での団体交渉。** 2016年8月、東京都労働委員会は東京学芸大学に対し、日本語での交渉や組合側による通訳の同行を条件とせずに東ゼンとの団体交渉に応じること、そして交渉を拒んだことについて謝罪することを命じました（[東ゼン](https://tozenunion.org/tozen-union-wins-precedent-setting-negotiating-language-case-against-tokyo-gakugei-university/)）。
 - **ビラ配りの妨害は違法。** 2016年1月、都労委は日本外国語専門学校が東ゼンのビラ配りを違法に妨害したと認め、妨害をやめ、謝罪文を職場に10日間掲示するよう命じました。2018年3月、中央労働委員会もこの命令を支持しました（[東ゼン](https://tozenunion.org/national-labor-board-upholds-ruling-against-jcfl/)）。
