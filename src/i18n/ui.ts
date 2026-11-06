@@ -95,9 +95,8 @@ export const ui = {
     '404.back': 'Back to the home page',
 
     'welcome.title': 'New here?',
-    'welcome.body':
-      'Start with how the union began, or see what we are asking the company for.',
-    'welcome.why': 'Why the union started',
+    'welcome.body': 'Find out what the union is, or see what we are asking the company for.',
+    'welcome.about': 'What is the union?',
     'welcome.demands': 'Our demands',
     'welcome.close': 'Not now',
   },
@@ -184,8 +183,8 @@ export const ui = {
     '404.back': 'ホームに戻る',
 
     'welcome.title': 'はじめての方へ',
-    'welcome.body': '組合が生まれた経緯か、私たちが会社に求めていることから読んでみてください。',
-    'welcome.why': '組合を立ち上げた理由',
+    'welcome.body': '組合とはどんなものか、私たちが会社に求めていることは何かを、まずご覧ください。',
+    'welcome.about': '組合とは？',
     'welcome.demands': '私たちの要求',
     'welcome.close': 'あとで',
   },
