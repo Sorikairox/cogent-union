@@ -496,11 +496,39 @@ p {
   padding: 0.25rem 0 0.25rem 1.25rem;
   font-style: italic;
 }
-/* Text with a hover note: a dotted underline tells readers there is one. */
-.prose span[title] {
+/* Text with a note shown on hover, or on tap where there is no hover.
+   A dotted underline tells readers there is one. */
+.note {
+  position: relative;
   text-decoration: underline dotted;
   text-underline-offset: 0.2em;
-  cursor: help;
+  /* iOS only sends taps on a non-link element to the page when it has this. */
+  cursor: pointer;
+}
+.note-text {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  z-index: 10;
+  width: max-content;
+  max-width: min(18rem, 80vw);
+  margin-top: 0.35rem;
+  padding: 0.4rem 0.6rem;
+  background: var(--dark);
+  color: var(--white);
+  font-size: 0.85rem;
+  line-height: 1.35;
+  visibility: hidden;
+}
+.note.is-open .note-text,
+.note:focus-visible .note-text {
+  visibility: visible;
+}
+/* Only real pointers: a tap on iOS leaves :hover stuck on. */
+@media (hover: hover) {
+  .note:hover .note-text {
+    visibility: visible;
+  }
 }
 .prose img {
   margin: 1.5rem 0;

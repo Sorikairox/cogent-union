@@ -59,5 +59,15 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? SITE.url).toString()
       <slot />
     </main>
     <Footer lang={lang} />
+    <script>
+      // Touch screens have no hover: a tap opens a note, and a tap anywhere else closes it.
+      document.addEventListener('click', (event) => {
+        const note = (event.target as Element).closest('.note');
+        document.querySelectorAll('.note.is-open').forEach((open) => {
+          if (open !== note) open.classList.remove('is-open');
+        });
+        note?.classList.toggle('is-open');
+      });
+    </script>
   </body>
 </html>

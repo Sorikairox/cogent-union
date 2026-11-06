@@ -14,7 +14,7 @@ these changes to our working conditions:
 
 - [10 of our PTO days would become "special days", taken away as soon as an
   employee hands in their resignation notice.](/en/demands/#what-we-can-and-will-discuss "See what we're doing about it")
-- <span title="Reversed, thanks to the union pushing back">Sick child leave would become unpaid.</span>
+- <span class="note" tabindex="0">Sick child leave would become unpaid. <span class="note-text" role="tooltip">Reversed, thanks to the union pushing back</span></span>
 - [The number of work-from-home days would be reduced for everyone.](/en/demands/#what-we-can-discuss-but-need-more-weight-behind "See what we're doing about it")
 
 Since then, the union has been fighting to reverse these changes. So far the
