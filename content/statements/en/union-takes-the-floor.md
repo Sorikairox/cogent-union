@@ -9,7 +9,7 @@ draft: false
 ---
 
 The section is growing. A new union president has been appointed, and this
-website is now live — two steps that serve the same commitment: **to inform, to
+website is now live. Both serve the same commitment: **to inform, to
 defend, to act**, with you and never without you.
 
 ## What changes for you

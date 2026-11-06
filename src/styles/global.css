@@ -496,8 +496,45 @@ p {
   padding: 0.25rem 0 0.25rem 1.25rem;
   font-style: italic;
 }
+/* Text with a hover note: a dotted underline tells readers there is one. */
+.prose span[title] {
+  text-decoration: underline dotted;
+  text-underline-offset: 0.2em;
+  cursor: help;
+}
 .prose img {
   margin: 1.5rem 0;
+}
+
+/* Under each demand: the union's sources and the company's, side by side. */
+.evidence {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 0.75rem;
+  align-items: start;
+  margin: 0.75rem 0 1.5rem;
+}
+.evidence details {
+  border: 2px solid var(--dark);
+  background: var(--white);
+}
+.evidence summary {
+  cursor: pointer;
+  padding: 0.5rem 0.75rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+.evidence summary:focus-visible {
+  outline: 3px solid var(--dark);
+  outline-offset: 2px;
+}
+.evidence details[open] summary {
+  background: var(--yellow);
+  border-bottom: 2px solid var(--dark);
+}
+.evidence details > :not(summary) {
+  margin: 0.75rem;
+  font-size: 0.95rem;
 }
 .table-scroll {
   overflow-x: auto;
