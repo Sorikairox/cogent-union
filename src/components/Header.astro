@@ -7,7 +7,7 @@ import { SITE } from '../site.config.mjs';
 interface Props {
   lang: Lang;
   alternates: Partial<Record<Lang, string>>;
-  /** Which nav entry is highlighted: 'home' | 'statements' | 'rights' | 'demands' | 'about'. */
+  /** Which nav entry is highlighted: 'home' | 'statements' | 'demands' | 'about'. */
   active?: string;
 }
 const { lang, alternates, active } = Astro.props;
@@ -16,7 +16,6 @@ const t = useTranslations(lang);
 const nav = [
   { key: 'home', href: path(lang), label: t('nav.home') },
   { key: 'statements', href: path(lang, 'statements'), label: t('nav.statements') },
-  { key: 'rights', href: path(lang, 'rights'), label: t('nav.rights') },
   { key: 'demands', href: path(lang, 'demands'), label: t('nav.demands') },
   { key: 'about', href: path(lang, 'about'), label: t('nav.about') },
 ];
