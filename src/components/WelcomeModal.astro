@@ -1,0 +1,41 @@
+---
+import { useTranslations, path, type Lang } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<!-- autofocus on the dialog itself, so neither button opens looking pre-selected. -->
+<dialog class="welcome" aria-labelledby="welcome-title" autofocus>
+  <h2 id="welcome-title">{t('welcome.title')}</h2>
+  <p>{t('welcome.body')}</p>
+  <div class="welcome-actions">
+    <a class="btn btn-yellow" href={path(lang, 'about')}><span>{t('welcome.why')}</span></a>
+    <a class="btn btn-red" href={path(lang, 'demands')}><span>{t('welcome.demands')}</span></a>
+  </div>
+  <form method="dialog">
+    <button class="welcome-close">{t('welcome.close')}</button>
+  </form>
+</dialog>
+
+<script>
+  // Shown once per browser. If storage is blocked we cannot remember that it
+  // was seen, so we never show it rather than show it on every page.
+  const KEY = 'welcome-seen';
+  const dialog = document.querySelector<HTMLDialogElement>('dialog.welcome');
+  let seen = true;
+  try {
+    seen = localStorage.getItem(KEY) === '1';
+    if (!seen) localStorage.setItem(KEY, '1');
+  } catch {}
+  if (dialog && !seen) {
+    dialog.showModal();
+    // A click on the backdrop lands on the dialog itself: close it.
+    dialog.addEventListener('click', (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+  }
+</script>

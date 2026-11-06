@@ -93,6 +93,13 @@ export const ui = {
     '404.title': 'Page not found',
     '404.body': 'This page does not exist, or does not exist any more.',
     '404.back': 'Back to the home page',
+
+    'welcome.title': 'New here?',
+    'welcome.body':
+      'Start with how the union began, or see what we are asking the company for.',
+    'welcome.why': 'Why the union started',
+    'welcome.demands': 'Our demands',
+    'welcome.close': 'Not now',
   },
   ja: {
     'site.name': 'コージェント労働組合',
@@ -175,6 +182,12 @@ export const ui = {
     '404.title': 'ページが見つかりません',
     '404.body': 'このページは存在しないか、すでに削除されています。',
     '404.back': 'ホームに戻る',
+
+    'welcome.title': 'はじめての方へ',
+    'welcome.body': '組合が生まれた経緯か、私たちが会社に求めていることから読んでみてください。',
+    'welcome.why': '組合を立ち上げた理由',
+    'welcome.demands': '私たちの要求',
+    'welcome.close': 'あとで',
   },
 } as const;
 

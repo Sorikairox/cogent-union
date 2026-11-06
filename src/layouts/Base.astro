@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import WelcomeModal from '../components/WelcomeModal.astro';
 import { useTranslations, locales, withBase, type Lang } from '../i18n/utils';
 import { SITE } from '../site.config.mjs';
 
@@ -59,6 +60,8 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? SITE.url).toString()
       <slot />
     </main>
     <Footer lang={lang} />
+    {/* Not on the two pages it points to: that visitor is already there. */}
+    {active !== 'about' && active !== 'demands' && <WelcomeModal lang={lang} />}
     <script>
       // Touch screens have no hover: a tap opens a note, and a tap anywhere else closes it.
       document.addEventListener('click', (event) => {

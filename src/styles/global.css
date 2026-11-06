@@ -797,3 +797,41 @@ p {
     background: #fff;
   }
 }
+
+/* ---------------------------------------------------------------
+   First-visit popup
+   --------------------------------------------------------------- */
+.welcome {
+  width: calc(100% - 2rem);
+  max-width: 28rem;
+  padding: 1.5rem;
+  border: 3px solid var(--dark);
+  background: var(--white);
+  color: var(--dark);
+  box-shadow: var(--shadow-hard);
+}
+.welcome:focus {
+  outline: none;
+}
+.welcome::backdrop {
+  background: rgb(17 17 17 / 0.6);
+}
+.welcome h2 {
+  margin-top: 0;
+}
+.welcome-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 1.25rem 0 0.5rem;
+}
+.welcome-close {
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--dimmed);
+  font: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}
