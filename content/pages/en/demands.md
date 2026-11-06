@@ -11,55 +11,6 @@ They are sorted by something that is not obvious from the outside: **whether we
 can legally make the company sit down and discuss them with us.** That depends
 on who is in the union, not on how good the demand is.
 
-## What we can't discuss yet, but want to
-
-> **We cannot bargain over this, because we have no members in the departments
-> it affects.** A company is only obliged to negotiate with a union over the
-> working conditions of the people that union represents. One colleague from
-> the affected team joining changes that immediately.
->
-> **[Join the union: contact us](mailto:cogentlabsunion@gmail.com)** ·
-> Membership is confidential, and nothing is shared with management.
-
-- **Restore flex-time for the Sales team.** Sales is currently required in the
-  office at 8:30 every day. We have no Sales members, so the company has no
-  obligation to discuss it with us.
-
-  <div class="evidence">
-  <details>
-  <summary>Sources the union cites</summary>
-
-  *From our bargaining request of 30 March 2026.*
-
-  - Having to submit your schedule a week ahead turns flex-time into fixed hours.
-  - It adds admin work for employees and for managers.
-  - It makes it harder to deal with the unexpected, at home or at work, and makes
-    people less willing to stay late when work needs it.
-  - It adds nothing to the old system, where people already planned their hours
-    around meetings and releases.
-  - We asked to go back to the original flex-time, with core hours from 11:00 to
-    16:00.
-  - Legal basis: under the [Labor Contract Act, Articles 9 and 10](https://www.japaneselawtranslation.go.jp/en/laws/view/3744), working
-    conditions cannot be changed to a worker's disadvantage without their
-    agreement, unless the company shows the change is reasonable.
-
-  </details>
-  <details>
-  <summary>Sources the company cites</summary>
-
-  *From the company's written answer of 6 April 2026.*
-
-  - The rule to submit a schedule a week ahead is already in the flex-time
-    regulations, so it is not a new rule.
-  - A week's notice is there to avoid disruption to operations, which the company
-    considers reasonable.
-  - Employees ticked a box confirming they had read the rules before using
-    flex-time, so the company does not accept that this is a disadvantageous
-    change or a move to fixed hours.
-
-  </details>
-  </div>
-
 ## What we can discuss, but need more weight behind
 
 We can put this on the table. Whether it moves depends on how many of us are
