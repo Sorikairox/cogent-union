@@ -35,8 +35,9 @@ reviewed by management before it goes out.
 
 ## Joining
 
-Joining is a personal decision and it stays confidential. Membership gives you a
-vote in the section's decisions and support from the wider federation, but you
+Joining is a personal decision. Your membership can stay confidential, but it
+helps us if we can show the company which departments are in the union, because
+that gives us more bargaining power. Membership gives you a vote in the section's decisions and support from the wider federation, but you
 do not need to be a member to ask us for help.
 
 Write to the section to get the details.
