@@ -505,6 +505,23 @@ p {
   /* iOS only sends taps on a non-link element to the page when it has this. */
   cursor: pointer;
 }
+/* A visible "?" so readers know there is something to open. */
+.note::after {
+  content: '?' / '';
+  display: inline-block;
+  width: 1.25em;
+  height: 1.25em;
+  margin-left: 0.35em;
+  border: 2px solid var(--dark);
+  border-radius: 50%;
+  background: var(--yellow);
+  color: var(--dark);
+  font-size: 0.8em;
+  font-weight: 700;
+  line-height: 1.05em;
+  text-align: center;
+  vertical-align: 0.1em;
+}
 .note-text {
   position: absolute;
   left: 0;
