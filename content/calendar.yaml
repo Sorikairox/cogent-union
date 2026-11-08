@@ -1,0 +1,221 @@
+# Every event on the calendar page, oldest first, in both languages.
+#
+# kind:        union | company | meeting
+# status:      done | proposed (proposed = asked for, not confirmed)
+# awaitsAnswer: true on a request we sent. With no answeredOn, the page counts
+#               the days without an answer, live, in the reader's browser.
+# answeredOn:  the date the company answered that request.
+# link:        optional page of this site, e.g. demands
+
+- id: union-founded
+  date: 2026-03-25
+  kind: union
+  title:
+    en: The union is founded
+    ja: 組合を結成
+  body:
+    en: Colleagues form the union, out of a growing feeling of disconnect between executives and employees.
+    ja: 経営陣と従業員のあいだの断絶が深まっているという思いから、同僚たちが組合を結成しました。
+
+- id: first-request
+  date: 2026-03-30
+  kind: union
+  awaitsAnswer: true
+  answeredOn: 2026-04-06
+  title:
+    en: We request collective bargaining
+    ja: 団体交渉を申し入れ
+  body:
+    en: We ask the company to put the new PTO, remote work and child sick leave rules on hold, and propose follow-up meetings on 6 and 13 April.
+    ja: 有給休暇、在宅勤務、子の看護休暇に関する新しいルールの適用停止を求め、4月6日と13日に続きの協議を行うことを提案しました。
+
+- id: sick-leave-reversed
+  date: 2026-04-01
+  kind: company
+  title:
+    en: Child sick leave is paid again
+    ja: 子の看護休暇が有給に戻る
+  body:
+    en: The company reverses the unpaid rule, calling it "an error in the HR department's operations and documentation", and adds that this is not an admission of any legal liability.
+    ja: 会社は無給とする扱いを撤回し、これを「HR部門における運用・記載上の誤り」と説明しました。あわせて、法的義務や違法性を認めるものではないとしています。
+
+- id: first-answer
+  date: 2026-04-06
+  kind: company
+  title:
+    en: The company answers in writing
+    ja: 会社が書面で回答
+  body:
+    en: It keeps the PTO and office-day changes. It gives five reasons for the extra office day but no data, and states that the answer admits no legal liability or unfair labor practice.
+    ja: 有給休暇と出社日の変更は維持するとしました。出社日を増やす理由を5つ挙げていますが、データは示していません。また、回答書は法的責任や不当労働行為を認めるものではないと明記しています。
+
+- id: tozen-affiliation
+  date: 2026-04-30
+  kind: union
+  title:
+    en: The union joins Tozen
+    ja: 東ゼン労組に加盟
+  body:
+    en: Tozen Union informs the company that our union is now part of Tozen. By then we had already held three bargaining sessions with the company.
+    ja: 東ゼン労組が、私たちの組合が東ゼンに加盟したことを会社に通知しました。この時点で、会社との団体交渉はすでに3回行われていました。
+
+- id: cb4-request
+  date: 2026-05-21
+  kind: union
+  awaitsAnswer: true
+  answeredOn: 2026-05-25
+  title:
+    en: We request collective bargaining
+    ja: 団体交渉を申し入れ
+
+- id: cb4
+  date: 2026-05-25
+  kind: meeting
+  title:
+    en: Bargaining session 4
+    ja: 第4回団体交渉
+
+- id: dispute-warning
+  date: 2026-06-09
+  kind: union
+  awaitsAnswer: true
+  answeredOn: 2026-06-26
+  title:
+    en: We send a dispute warning letter
+    ja: 争議予告通知を送付
+  body:
+    en: We give the company until 30 June to respond to our demands.
+    ja: 要求への回答期限を6月30日としました。
+
+- id: cb5
+  date: 2026-06-22
+  kind: meeting
+  title:
+    en: Bargaining session 5, online
+    ja: 第5回団体交渉（オンライン）
+
+- id: refusal
+  date: 2026-06-26
+  kind: company
+  title:
+    en: The company refuses both demands
+    ja: 会社が2つの要求をいずれも拒否
+  body:
+    en: Its answer to the dispute warning letter, 17 days after we sent it.
+    ja: 争議予告通知に対する回答で、送付から17日後でした。
+
+- id: cb6
+  date: 2026-06-29
+  kind: meeting
+  title:
+    en: Bargaining session 6
+    ja: 第6回団体交渉
+
+- id: cba-1
+  date: 2026-07-06
+  kind: company
+  title:
+    en: The company offers a first draft agreement
+    ja: 会社が労働協約の第1案を提示
+  body:
+    en: "A concession on paid leave: employees with 2 to 4 years of service could use their special leave days even when resigning, under conditions."
+    ja: 有給休暇について譲歩し、勤続2年から4年の従業員は、条件つきで、退職時にも特別休暇を使えるとする内容です。
+
+- id: cba-2
+  date: 2026-07-09
+  kind: union
+  awaitsAnswer: true
+  answeredOn: 2026-07-17
+  title:
+    en: We send our counter-draft
+    ja: 組合が第2案を提示
+  body:
+    en: No 4-year limit, and no conditions.
+    ja: 4年の上限も条件もなしとする内容です。
+
+- id: cba-3
+  date: 2026-07-17
+  kind: company
+  title:
+    en: The company sends a third draft
+    ja: 会社が第3案を提示
+  body:
+    en: It keeps the 4-year limit and the conditions from its first draft.
+    ja: 第1案と同じく、4年の上限と条件を残したままです。
+
+- id: tozen-signatory
+  date: 2026-07-21
+  kind: union
+  title:
+    en: We explain why Tozen must sign the agreement
+    ja: 東ゼン労組が協約の当事者となる必要性を説明
+
+- id: wfh-request
+  date: 2026-07-30
+  kind: union
+  awaitsAnswer: true
+  answeredOn: 2026-08-20
+  link: demands
+  title:
+    en: We ask to negotiate remote work again
+    ja: 在宅勤務についての交渉再開を申し入れ
+  body:
+    en: We want to negotiate remote work together with the paid leave system.
+    ja: 在宅勤務を、有給休暇制度とあわせて交渉したいと伝えました。
+
+- id: paid-leave-first
+  date: 2026-08-20
+  kind: company
+  title:
+    en: The company says paid leave comes first
+    ja: 会社は有給休暇が先だと主張
+  body:
+    en: Three weeks later, the company answers that the union had agreed to negotiate paid leave first.
+    ja: 3週間後、会社は、組合が有給休暇を先に交渉することに同意していたと回答しました。
+
+- id: demands-submitted
+  date: 2026-10-30
+  kind: union
+  awaitsAnswer: true
+  answeredOn: 2026-11-05
+  link: demands
+  title:
+    en: We submit our demands and ask for a bargaining session
+    ja: 要求書を提出し、団体交渉を申し入れ
+  body:
+    en: We propose a session on 30 November, 19:00 to 21:00, at the company, with interpreters on both sides.
+    ja: 11月30日19時から21時まで、社内で、労使双方の通訳つきで交渉を行うことを提案しました。
+
+- id: december-counter
+  date: 2026-11-05
+  kind: company
+  title:
+    en: The company agrees to bargain, on 1 December
+    ja: 会社が団体交渉に応じるが、日程は12月1日
+  body:
+    en: Not on the date we proposed.
+    ja: 組合が提案した日ではありません。
+
+- id: november-proposal
+  date: 2026-11-05
+  kind: union
+  awaitsAnswer: true
+  title:
+    en: We propose 20 November instead
+    ja: 組合は11月20日を提案
+
+- id: session-union-date
+  date: 2026-11-20
+  kind: meeting
+  status: proposed
+  title:
+    en: Bargaining session, date proposed by the union
+    ja: 団体交渉（組合が提案した日程）
+
+- id: session-company-date
+  date: 2026-12-01
+  kind: meeting
+  status: proposed
+  title:
+    en: Bargaining session, date proposed by the company
+    ja: 団体交渉（会社が提案した日程）

@@ -24,6 +24,7 @@ export const ui = {
     'nav.statements': 'Statements',
     'nav.rights': 'Your rights',
     'nav.demands': 'Our demands',
+    'nav.calendar': 'Calendar',
     'nav.about': 'About the union',
     'nav.skip': 'Skip to content',
     'nav.menu': 'Menu',
@@ -99,6 +100,23 @@ export const ui = {
     'welcome.about': 'What is the union?',
     'welcome.demands': 'Our demands',
     'welcome.close': 'Not now',
+
+    'calendar.title': 'Calendar',
+    'calendar.description':
+      'What has happened between the union and the company, what may happen next, and how long the company takes to answer.',
+    'calendar.intro':
+      'Every exchange between the union and the company, in order. For each request we send, we count the days until the company answers.',
+    'calendar.waitingNow': 'days without an answer to our request of',
+    'calendar.sinceSession': 'days since the last bargaining session, on',
+    'calendar.upcoming': 'Coming up',
+    'calendar.history': 'What has happened',
+    'calendar.kind.union': 'Union',
+    'calendar.kind.company': 'Company',
+    'calendar.kind.meeting': 'Bargaining',
+    'calendar.proposed': 'Proposed, not confirmed',
+    'calendar.answeredAfter': 'Answered after {n} days',
+    'calendar.noAnswer': 'No answer yet: {n} days',
+    'calendar.more': 'Read more',
   },
   ja: {
     'site.name': 'コージェント労働組合',
@@ -112,6 +130,7 @@ export const ui = {
     'nav.statements': '声明',
     'nav.rights': '権利について',
     'nav.demands': '私たちの要求',
+    'nav.calendar': 'カレンダー',
     'nav.about': '組合について',
     'nav.skip': '本文へ移動',
     'nav.menu': 'メニュー',
@@ -187,6 +206,23 @@ export const ui = {
     'welcome.about': '組合とは？',
     'welcome.demands': '私たちの要求',
     'welcome.close': 'あとで',
+
+    'calendar.title': 'カレンダー',
+    'calendar.description':
+      '組合と会社のあいだで起きたこと、これから起きうること、そして会社が回答までにかけている日数。',
+    'calendar.intro':
+      '組合と会社のやりとりを時系列でまとめています。組合が送った申し入れごとに、会社が回答するまでの日数を数えています。',
+    'calendar.waitingNow': '日間、回答がありません。申し入れ日：',
+    'calendar.sinceSession': '日間、団体交渉が開かれていません。最後の交渉：',
+    'calendar.upcoming': '今後の予定',
+    'calendar.history': 'これまでの経緯',
+    'calendar.kind.union': '組合',
+    'calendar.kind.company': '会社',
+    'calendar.kind.meeting': '団体交渉',
+    'calendar.proposed': '申し入れ中・未確定',
+    'calendar.answeredAfter': '{n}日後に回答',
+    'calendar.noAnswer': '未回答：{n}日経過',
+    'calendar.more': '詳しく見る',
   },
 } as const;
 

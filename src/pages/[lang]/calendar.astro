@@ -1,0 +1,112 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { locales, useTranslations, formatDate, isoDate, path, type Lang } from '../../i18n/utils';
+
+export function getStaticPaths() {
+  return locales.map((lang) => ({ params: { lang } }));
+}
+
+const lang = Astro.params.lang as Lang;
+const t = useTranslations(lang);
+const DAY = 86_400_000;
+
+const events = (await getCollection('calendar')).sort(
+  (a, b) => a.data.date.valueOf() - b.data.date.valueOf(),
+);
+const upcoming = events.filter((e) => e.data.status === 'proposed');
+const history = events.filter((e) => e.data.status !== 'proposed');
+const unanswered = events.filter((e) => e.data.awaitsAnswer && !e.data.answeredOn);
+const lastSession = history.filter((e) => e.data.kind === 'meeting').at(-1);
+
+/** Whole days from a date to another, or to the build date. */
+const daysSince = (from: Date, to = new Date()) => Math.floor((to.valueOf() - from.valueOf()) / DAY);
+
+/** "No answer yet: {n} days" around the live count. */
+const noAnswer = t('calendar.noAnswer').split('{n}');
+
+const alternates = Object.fromEntries(locales.map((l) => [l, path(l, 'calendar')])) as Record<Lang, string>;
+type Event = CollectionEntry<'calendar'>;
+---
+
+<Base lang={lang} title={t('calendar.title')} description={t('calendar.description')} alternates={alternates} active="calendar">
+  <article class="card">
+    <h1>{t('calendar.title')}</h1>
+    <p>{t('calendar.intro')}</p>
+
+    {
+      lastSession && (
+        <p class="waiting-stat">
+          <span class="waiting-days" data-since={isoDate(lastSession.data.date)}>{daysSince(lastSession.data.date)}</span>
+          <span>
+            {t('calendar.sinceSession')}{' '}
+            <time datetime={isoDate(lastSession.data.date)}>{formatDate(lastSession.data.date, lang)}</time>
+          </span>
+        </p>
+      )
+    }
+
+    {
+      unanswered.map((e) => (
+        <p class="waiting-stat">
+          <span class="waiting-days" data-since={isoDate(e.data.date)}>{daysSince(e.data.date)}</span>
+          <span>
+            {t('calendar.waitingNow')}{' '}
+            <time datetime={isoDate(e.data.date)}>{formatDate(e.data.date, lang)}</time>
+          </span>
+        </p>
+      ))
+    }
+
+    {
+      [
+        { key: 'upcoming', heading: t('calendar.upcoming'), items: upcoming },
+        { key: 'history', heading: t('calendar.history'), items: history },
+      ]
+        .filter((group) => group.items.length > 0)
+        .map((group) => (
+          <section aria-labelledby={`cal-${group.key}`}>
+            <h2 id={`cal-${group.key}`}>{group.heading}</h2>
+            <ol class="timeline">
+              {group.items.map((e: Event) => (
+                <li class={`event event-${e.data.kind}`}>
+                  <p class="event-meta">
+                    <time datetime={isoDate(e.data.date)}>{formatDate(e.data.date, lang)}</time>
+                    <span class="event-kind">{t(`calendar.kind.${e.data.kind}`)}</span>
+                    {e.data.status === 'proposed' && <span class="event-flag">{t('calendar.proposed')}</span>}
+                  </p>
+                  <h3>{e.data.title[lang]}</h3>
+                  {e.data.body[lang] && <p>{e.data.body[lang]}</p>}
+                  {e.data.awaitsAnswer &&
+                    (e.data.answeredOn ? (
+                      <p class="answer answered">
+                        {t('calendar.answeredAfter').replace('{n}', String(daysSince(e.data.date, e.data.answeredOn)))}
+                      </p>
+                    ) : (
+                      <p class="answer unanswered">
+                        {noAnswer[0]}
+                        <span data-since={isoDate(e.data.date)}>{daysSince(e.data.date)}</span>
+                        {noAnswer[1]}
+                      </p>
+                    ))}
+                  {e.data.link && (
+                    <p><a class="more" href={path(lang, e.data.link)}>{t('calendar.more')} →</a></p>
+                  )}
+                </li>
+              ))}
+            </ol>
+          </section>
+        ))
+    }
+  </article>
+</Base>
+
+<script>
+  // The page is built once, so the waiting counts would freeze on the build
+  // date. Recount them from today in the reader's browser.
+  const DAY = 86_400_000;
+  document.querySelectorAll<HTMLElement>('[data-since]').forEach((el) => {
+    const since = Date.parse(el.dataset.since!);
+    if (!Number.isNaN(since)) el.textContent = String(Math.floor((Date.now() - since) / DAY));
+  });
+</script>

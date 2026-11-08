@@ -1,5 +1,5 @@
 import { defineCollection, z } from 'astro:content';
-import { glob } from 'astro/loaders';
+import { file, glob } from 'astro/loaders';
 
 /**
  * The CMS writes an empty string for an optional field the editor left blank,
@@ -50,10 +50,27 @@ const pages = defineCollection({
   }),
 });
 
+/** The calendar page: one YAML file, both languages side by side. */
+const bilingual = z.object({ en: z.string(), ja: z.string() });
+const calendar = defineCollection({
+  loader: file('./content/calendar.yaml'),
+  schema: z.object({
+    date: z.coerce.date(),
+    kind: z.enum(['union', 'company', 'meeting']),
+    status: z.enum(['done', 'proposed']).default('done'),
+    awaitsAnswer: z.boolean().default(false),
+    answeredOn: blankAsUndefined(z.coerce.date()),
+    link: blankAsUndefined(z.string()),
+    title: bilingual,
+    body: bilingual.partial().default({}),
+  }),
+});
+
 export const collections = {
   statements: section('statements'),
   news: section('news'),
   rights: section('rights'),
   dossiers: section('dossiers'),
   pages,
+  calendar,
 };
