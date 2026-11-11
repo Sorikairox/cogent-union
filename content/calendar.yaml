@@ -200,22 +200,50 @@
   date: 2026-11-05
   kind: union
   awaitsAnswer: true
+  answeredOn: 2026-11-09
   title:
     en: We propose 20 November instead
     ja: 組合は11月20日を提案
 
-- id: session-union-date
-  date: 2026-11-20
-  kind: meeting
-  status: proposed
+- id: three-december-dates
+  date: 2026-11-09
+  kind: company
   title:
-    en: Bargaining session, date proposed by the union
-    ja: 団体交渉（組合が提案した日程）
+    en: The company offers three dates in December
+    ja: 会社が12月の3つの日程を提示
+  body:
+    en: 2, 8 or 9 December, 18:00 to 19:30. Not 20 November, and not 1 December, the date it offered on 5 November. Each slot is 90 minutes; we had proposed two hours.
+    ja: 12月2日、8日、9日のいずれも18時から19時30分まで。11月20日でも、会社自身が11月5日に示した12月1日でもありません。各回90分で、組合が提案した2時間より短くなっています。
 
-- id: session-company-date
-  date: 2026-12-01
+- id: session-dec-02
+  date: 2026-12-02
   kind: meeting
   status: proposed
   title:
-    en: Bargaining session, date proposed by the company
-    ja: 団体交渉（会社が提案した日程）
+    en: Bargaining session, one of the dates offered by the company
+    ja: 団体交渉（会社が提示した日程の一つ）
+  body:
+    en: 18:00 to 19:30.
+    ja: 18時から19時30分まで。
+
+- id: session-dec-08
+  date: 2026-12-08
+  kind: meeting
+  status: proposed
+  title:
+    en: Bargaining session, one of the dates offered by the company
+    ja: 団体交渉（会社が提示した日程の一つ）
+  body:
+    en: 18:00 to 19:30.
+    ja: 18時から19時30分まで。
+
+- id: session-dec-09
+  date: 2026-12-09
+  kind: meeting
+  status: proposed
+  title:
+    en: Bargaining session, one of the dates offered by the company
+    ja: 団体交渉（会社が提示した日程の一つ）
+  body:
+    en: 18:00 to 19:30.
+    ja: 18時から19時30分まで。
