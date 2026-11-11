@@ -11,6 +11,22 @@ They are sorted by something that is not obvious from the outside: **whether we
 can legally make the company sit down and discuss them with us.** That depends
 on who is in the union, not on how good the demand is.
 
+## What we can't discuss yet, but want to
+
+> **We cannot bargain over this, because we have no members in the departments
+> it affects.** A company is only obliged to negotiate with a union over the
+> working conditions of the people that union represents. One colleague from
+> the affected team joining changes that immediately.
+>
+> **[Join the union: contact us](mailto:cogentlabsunion@gmail.com)** ·
+> Your membership can stay confidential, but it helps us if we can show the
+> company which departments are in the union, because that gives us more
+> bargaining power.
+
+- **Restore flex-time for the Sales team.** Sales is currently required in the
+  office at 8:30 every day. We have no Sales members, so the company has no
+  obligation to discuss it with us.
+
 ## What we can discuss, but need more weight behind
 
 We can put this on the table. Whether it moves depends on how many of us are
