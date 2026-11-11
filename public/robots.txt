@@ -1,5 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /cogent-union/admin/
-
-Sitemap: https://sorikairox.github.io/cogent-union/sitemap-index.xml
