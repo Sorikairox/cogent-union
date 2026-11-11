@@ -13,7 +13,7 @@ The visual design reproduces the one used by
 
 ```bash
 npm install
-npm run dev      # http://localhost:4321/cogent-union/
+npm run dev      # http://localhost:4321/
 npm run build    # static site in dist/
 npm run preview  # serve dist/ locally
 npm run check    # type-check pages, components and content schemas
@@ -25,7 +25,7 @@ Two things about that cache in `.astro/`:
   a build racing the dev server silently drops pages.
 - **After deleting an article, build with `npx astro build --force`.** A plain
   local build keeps serving entries whose files are gone, because the cache is
-  not pruned. The deploy workflow is unaffected — it builds from a fresh
+  not pruned. The Netlify deploy is unaffected — it builds from a fresh
   checkout with no cache.
 
 ---
@@ -128,16 +128,16 @@ files in `content/`, so publishing an article is making a commit.
    ```bash
    npm run dev
    ```
-3. Open <http://localhost:4321/cogent-union/admin/> **in Chrome or Edge**, click
+3. Open <http://localhost:4321/admin/> **in Chrome or Edge**, click
    **Work with Local Repository** and pick the folder from step 1.
 4. Write. Each save writes the Markdown file on disk — nothing is public yet.
-   The site at <http://localhost:4321/cogent-union/> reloads as you go, so you
+   The site at <http://localhost:4321/> reloads as you go, so you
    see the article exactly as readers will.
 5. Publish by committing and pushing:
    ```bash
    git add content public/uploads && git commit -m "Add: <article title>" && git push
    ```
-   The deploy workflow takes about a minute.
+   Netlify rebuilds and publishes the site in about a minute.
 
 Local mode needs a Chromium-based browser: it uses the File System Access API,
 which Firefox and Safari do not implement.
@@ -192,25 +192,21 @@ Routes, feeds, sitemaps and the language switcher follow automatically.
 
 ## Deployment
 
-`.github/workflows/deploy.yml` builds the site and publishes it to GitHub Pages
-on every push to `main`. In the repository settings, set **Pages → Source** to
-**GitHub Actions**.
+Netlify builds the site and publishes it to <https://cogent-union.netlify.app/>
+on every push to `main`. The build settings are in `netlify.toml`; the project
+is `cogent-union` in the Netlify dashboard.
 
-The site is served from <https://sorikairox.github.io/cogent-union/> — a
-GitHub Pages *project* site, so it lives under a sub-path. That sub-path is
-`SITE.base` in `src/site.config.mjs`, which feeds `base` in `astro.config.mjs`.
+The origin and sub-path are `SITE.url` and `SITE.base` in
+`src/site.config.mjs`, which feed `astro.config.mjs`. The base is `'/'` today.
 Astro applies it to its own assets only, so every link written by hand goes
-through `withBase()` from `src/i18n/utils.ts` — use it for any new one.
+through `withBase()` from `src/i18n/utils.ts` — use it for any new one, so the
+site keeps working if it is ever served under a sub-path.
 
 ### Moving to a custom domain
 
-1. Set `SITE.url` to the domain and `SITE.base` to `'/'`.
-2. Update the `Sitemap:` line in `public/robots.txt`.
-3. Add `public/CNAME` containing the domain, and point the DNS record at
-   GitHub Pages.
-
-Any static host works just as well (Netlify, Cloudflare Pages, a plain web
-server): build with `npm run build` and serve `dist/`.
+1. Add the domain in Netlify under **Domain management** and point the DNS
+   record at Netlify.
+2. Set `SITE.url` to the domain. `robots.txt` and the sitemap follow it.
 
 ---
 

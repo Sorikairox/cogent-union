@@ -2,17 +2,14 @@
  * Single place to edit the identity of the site.
  * Everything here shows up in the header, footer, metadata and CMS previews.
  */
-/** Set by netlify.toml, so the Netlify build differs from the GitHub Pages one. */
-const env = globalThis.process?.env ?? {};
-
 export const SITE = {
   /** Origin of the deployed site. Used for sitemap, RSS and canonical links. */
-  url: env.SITE_URL || 'https://sorikairox.github.io',
+  url: 'https://cogent-union.netlify.app',
   /**
-   * Sub-path the site is served from. GitHub Pages serves a project site under
-   * /<repo>/; Netlify serves it from the root.
+   * Sub-path the site is served from. Netlify serves it from the root; set a
+   * sub-path here if the host ever serves it under one.
    */
-  base: env.SITE_BASE || '/cogent-union',
+  base: '/',
   /** Repository that holds the articles (used by the CMS). */
   repo: 'Sorikairox/cogent-union',
   branch: 'main',

@@ -4,7 +4,7 @@
 # repository, under /content. Nothing is stored in a database.
 #
 # How the section edits: clone the repository, `npm run dev`, open
-# http://localhost:4321/cogent-union/admin/ in Chrome or Edge and choose
+# http://localhost:4321/admin/ in Chrome or Edge and choose
 # "Work with Local Repository". Saves are written to the files on disk, and
 # become public when they are committed and pushed.
 #

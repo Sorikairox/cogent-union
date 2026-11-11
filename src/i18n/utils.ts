@@ -10,8 +10,8 @@ export function isLang(value: string | undefined): value is Lang {
 }
 
 /**
- * The sub-path the site is served from ('/' or '/cogent-union/' on GitHub
- * Pages). Astro only applies it to its own asset URLs, so every link we write
+ * The sub-path the site is served from ('/' on Netlify, or a sub-path such
+ * as '/cogent-union/'). Astro only applies it to its own asset URLs, so every link we write
  * by hand has to go through `withBase`.
  */
 const BASE = import.meta.env.BASE_URL;

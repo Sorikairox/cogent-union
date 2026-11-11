@@ -4,5 +4,3 @@
 
 [build.environment]
   NODE_VERSION = "22"
-  SITE_URL = "https://cogent-union.netlify.app"
-  SITE_BASE = "/"
